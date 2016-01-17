@@ -1,9 +1,9 @@
-<ion-view id="alerts">
+<ion-view id="calendar">
 	<ion-header-bar align-title="left" class="custom-header bar-positive">
 	  <div class="buttons">
 	    <button class="custom-button button icon ion-ios-arrow-back" ng-click="goConnect()">Back</button>
 	  </div>
-	  <h1 class="title title-right">Alerts</h1>	  
+	  <h1 class="title title-right">Calendar</h1>	  
 	</ion-header-bar>
     <ion-content class="padding">        
         <ul style="padding: 30px;">
@@ -81,20 +81,25 @@
             </li>
         </ul>
     </ion-content>
-    <ion-footer-bar class="custom-footer bar-assertive">
+    <ion-footer-bar align-title="left" class="custom-footer bar-assertive">
       <ion-tabs class="tabs-positive">
-        <ion-tab title="" icon="ion-ios-bell" href="#">
+
+        <ion-tab title="" icon="ion-ios-bell" ng-click="goAlert()">
           <ion-nav-view name="alerts-tab"></ion-nav-view>
         </ion-tab>
-        <ion-tab title="" icon="ion-ios-calendar" href="#/calendar">
-          <ion-nav-view name="calendar-tab"></ion-nav-view>
+
+        <ion-tab title="" icon="ion-ios-calendar">
+          <ion-nav-view name="about-tab"></ion-nav-view>
         </ion-tab>
-        <ion-tab title="" icon="ion-ios-cart" ui-sref="tabs.contact">
+
+        <ion-tab title="" icon="ion-ios-cart" ng-click="goBuy()">
           <ion-nav-view name="contact-tab"></ion-nav-view>
         </ion-tab>
-        <ion-tab title="" icon="ion-help-circled" ui-sref="tabs.contact">
+
+        <ion-tab title="" icon="ion-help-circled" ng-click="goHelp()">
           <ion-nav-view name="contact-tab"></ion-nav-view>
         </ion-tab>
+
       </ion-tabs>
-   </ion-footer-bar>
+    </ion-footer-bar>
 </ion-view>

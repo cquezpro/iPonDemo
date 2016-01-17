@@ -57,6 +57,24 @@ angular.module('iPonDemo', ['ionic', 'ionic.rating', 'iPonDemo.controllers', 'iP
     url: "/alerts",
     templateUrl: "templates/alerts.html",
     controller: 'AlertCtrl'
+  })
+
+  .state('calendar', {
+    url: "/calendar",
+    templateUrl: "templates/calendar.html",
+    controller: 'CalendarCtrl'
+  })
+  
+  .state('buy', {
+    url: "/buy",
+    templateUrl: "templates/buy.html",
+    controller: 'BuyCtrl'
+  })
+    
+  .state('help', {
+    url: "/help",
+    templateUrl: "templates/help.html",
+    controller: 'HelpCtrl'
   });
   
   // if none of the above states are matched, use this as the fallback

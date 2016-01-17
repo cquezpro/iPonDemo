@@ -76,12 +76,45 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     $scope.goAlert = function () {
     	$state.go('alerts');
     };
+    
+    $scope.goCalendar = function () {
+    	$state.go('calendar');
+    };
+    
+    $scope.goBuy = function () {
+    	$state.go('buy');
+    };
+    
+    $scope.goHelp = function () {
+    	$state.go('help');
+    };
 })
 
 .controller('SettingCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, sharedProperties) {
 
+    
     $scope.goConnect = function () {
 		$state.go('connect');
+    };
+    
+    $scope.goSetting = function () {
+		$state.go('settings');
+    };
+
+    $scope.goAlert = function () {
+    	$state.go('alerts');
+    };
+    
+    $scope.goCalendar = function () {
+    	$state.go('calendar');
+    };
+    
+    $scope.goBuy = function () {
+    	$state.go('buy');
+    };
+    
+    $scope.goHelp = function () {
+    	$state.go('help');
     };
 })
 
@@ -90,5 +123,60 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     $scope.goConnect = function () {
 		$state.go('connect');
     };
+})
+
+.controller('CalendarCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, sharedProperties) {
+
+    $scope.goConnect = function () {
+		$state.go('connect');
+    };
+    
+    $scope.goSetting = function () {
+		$state.go('settings');
+    };
+
+    $scope.goAlert = function () {
+    	$state.go('alerts');
+    };
+    
+    $scope.goCalendar = function () {
+    	$state.go('calendar');
+    };
+    
+    $scope.goBuy = function () {
+    	$state.go('buy');
+    };
+    
+    $scope.goHelp = function () {
+    	$state.go('help');
+    };
+})
+
+.controller('BuyCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, sharedProperties) {
+
+    $scope.goConnect = function () {
+		$state.go('connect');
+    };
+    
+    $scope.goSetting = function () {
+		$state.go('settings');
+    };
+
+    $scope.goAlert = function () {
+    	$state.go('alerts');
+    };
+    
+    $scope.goCalendar = function () {
+    	$state.go('calendar');
+    };
+    
+    $scope.goBuy = function () {
+    	$state.go('buy');
+    };
+    
+    $scope.goHelp = function () {
+    	$state.go('help');
+    };
 });
+
 

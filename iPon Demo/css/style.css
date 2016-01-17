@@ -167,8 +167,10 @@
     height: 35px;
     width: 100%;
 }
-#alerts .toggle {
-    margin-top: 5px;
+
+#alerts .check-item{
+    float:left;    
+    margin-top: 0px;
 }
 
 .scroll {
