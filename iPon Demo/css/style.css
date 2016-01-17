@@ -191,8 +191,22 @@
 
 #map-area {
   width: 100%;
-  height: 150px;
+  height: 180px;
 }
+
+/*Help Page */
+#help .item {
+    border: none;
+}
+#help .item span{
+    padding: 0px;
+    color: #d60273;  
+}
+#help li {
+    border-bottom: solid 2px grey;
+    margin-bottom: 1px;
+}
+
 
 .scroll {
     height: 100%;
