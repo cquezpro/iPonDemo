@@ -6,11 +6,9 @@
 /* custom toggle */
 
 .toggle-text > .track {
-
   width: auto;
   padding-left: 25px;
   padding-right: 25px;
-
 }
 
 .toggle-text .handle {
@@ -20,10 +18,8 @@
 .toggle-text .handle-text {
   font-size: 24px;
   color: white;
-
   position: absolute;
-  top: -4px;
-  
+  top: -4px;  
 }
 
 .toggle-text .handle-text-false {
@@ -94,6 +90,7 @@
 .custom-footer .tab-nav, .custom-header {
     background: #d60273 !important;
     border: none !important;
+    left: 0px;
 }
 
 .blue {
@@ -171,6 +168,30 @@
 #alerts .check-item{
     float:left;    
     margin-top: 0px;
+}
+
+/*Calendar Page*/
+#calendar .day-title {
+    color: #d60273;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+/* Buy Page*/
+#buy select {
+    height: 40px;
+}
+#buy .map-section {
+    margin-top: 15px;
+}
+#buy .map-section p{
+    color: #d60273;    
+    font-size: 17px;
+}
+
+#map-area {
+  width: 100%;
+  height: 150px;
 }
 
 .scroll {

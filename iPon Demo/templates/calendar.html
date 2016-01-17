@@ -6,80 +6,35 @@
 	  <h1 class="title title-right">Calendar</h1>	  
 	</ion-header-bar>
     <ion-content class="padding">        
-        <ul style="padding: 30px;">
-            <li>
-                <div class="alert-item">
-                    <select>
-                        <option value="Saturation 90%">Saturation 90%</option>
-                        <option value="Saturation 75%">Saturation 75%</option>
-                        <option value="Saturation 50%">Saturation 50%</option>
-                        <option value="Saturation 25%">Saturation 25%</option>
-                        <option value="Saturation 10%">Saturation 10%</option>
-                    </select>
-                </div>
-                <div class="check-item">
-                    <label class="toggle">
-                       <input type="checkbox">
-                       <div class="track">
-                         <div class="handle"></div>
-                       </div>
-                    </label>
-               </div>
-            </li>
-            <li>
-                <div class="alert-item">
-                    <select>
-                        <option value="Time 4h 00m">Time 4h 00m</option>
-                        <option value="Time 3h 00m">Time 3h 00m</option>
-                        <option value="Time 2h 00m">Time 2h 00m</option>
-                        <option value="Time 1h 00m">Time 1h 00m</option>                        
-                    </select>
-                </div>
-                <div class="check-item">
-                    <label class="toggle">
-                       <input type="checkbox">
-                       <div class="track">
-                         <div class="handle"></div>
-                       </div>
-                    </label>
-                </div>
-            </li>
-            <li>
-                <div class="alert-item">
-                    <select>
-                        <option value="Low Batt 20%">Low Batt 20%</option>
-                        <option value="Low Batt 40%">Low Batt 40%</option>
-                        <option value="Low Batt 60%">Low Batt 60%</option>
-                        <option value="Low Batt 80%">Low Batt 80%</option>
-                        <option value="Low Batt 100%">Low Batt 100%</option>
-                    </select>
-                </div>
-                <div class="check-item">
-                    <label class="toggle">
-                       <input type="checkbox">
-                       <div class="track">
-                         <div class="handle"></div>
-                       </div>
-                    </label>
-                 </div>
-            </li>
-            <li>
-                <div class="alert-item">
-                    <select>
-                        <option value="Pre-Period 2D">Pre-Period 2D</option>
-                        <option value="Pre-Period 2D">Pre-Period 2D</option>
-                    </select>
-                </div>
-                <div class="check-item">
-                    <label class="toggle">
-                       <input type="checkbox">
-                       <div class="track">
-                         <div class="handle"></div>
-                       </div>
-                    </label>
-                </div>
-            </li>
-        </ul>
+        <div>
+            <img src="img/calendar.png" style="width: 100%;" alt="calendar" />
+        </div>
+        <div>
+            <span class="day-title">Cycle Days</span>
+            <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+        </div>
+        <div>
+            <span class="day-title">Period Days</span>
+            <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+        </div>
+        <div>
+            <div class="day-title">Last Cycle</div>
+            <input type="date" value="12/13/2015"/>
+        </div>
     </ion-content>
     <ion-footer-bar align-title="left" class="custom-footer bar-assertive">
       <ion-tabs class="tabs-positive">

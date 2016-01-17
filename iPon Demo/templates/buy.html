@@ -1,85 +1,39 @@
-<ion-view id="alerts">
+<ion-view id="buy">
 	<ion-header-bar align-title="left" class="custom-header bar-positive">
 	  <div class="buttons">
 	    <button class="custom-button button icon ion-ios-arrow-back" ng-click="goConnect()">Back</button>
 	  </div>
-	  <h1 class="title title-right">Alerts</h1>	  
+	  <h1 class="title title-right">Buy</h1>	  
 	</ion-header-bar>
     <ion-content class="padding">        
-        <ul style="padding: 30px;">
-            <li>
-                <div class="alert-item">
-                    <select>
-                        <option value="Saturation 90%">Saturation 90%</option>
-                        <option value="Saturation 75%">Saturation 75%</option>
-                        <option value="Saturation 50%">Saturation 50%</option>
-                        <option value="Saturation 25%">Saturation 25%</option>
-                        <option value="Saturation 10%">Saturation 10%</option>
-                    </select>
-                </div>
-                <div class="check-item">
-                    <label class="toggle">
-                       <input type="checkbox">
-                       <div class="track">
-                         <div class="handle"></div>
-                       </div>
-                    </label>
-               </div>
-            </li>
-            <li>
-                <div class="alert-item">
-                    <select>
-                        <option value="Time 4h 00m">Time 4h 00m</option>
-                        <option value="Time 3h 00m">Time 3h 00m</option>
-                        <option value="Time 2h 00m">Time 2h 00m</option>
-                        <option value="Time 1h 00m">Time 1h 00m</option>                        
-                    </select>
-                </div>
-                <div class="check-item">
-                    <label class="toggle">
-                       <input type="checkbox">
-                       <div class="track">
-                         <div class="handle"></div>
-                       </div>
-                    </label>
-                </div>
-            </li>
-            <li>
-                <div class="alert-item">
-                    <select>
-                        <option value="Low Batt 20%">Low Batt 20%</option>
-                        <option value="Low Batt 40%">Low Batt 40%</option>
-                        <option value="Low Batt 60%">Low Batt 60%</option>
-                        <option value="Low Batt 80%">Low Batt 80%</option>
-                        <option value="Low Batt 100%">Low Batt 100%</option>
-                    </select>
-                </div>
-                <div class="check-item">
-                    <label class="toggle">
-                       <input type="checkbox">
-                       <div class="track">
-                         <div class="handle"></div>
-                       </div>
-                    </label>
-                 </div>
-            </li>
-            <li>
-                <div class="alert-item">
-                    <select>
-                        <option value="Pre-Period 2D">Pre-Period 2D</option>
-                        <option value="Pre-Period 2D">Pre-Period 2D</option>
-                    </select>
-                </div>
-                <div class="check-item">
-                    <label class="toggle">
-                       <input type="checkbox">
-                       <div class="track">
-                         <div class="handle"></div>
-                       </div>
-                    </label>
-                </div>
-            </li>
-        </ul>
+        <img src="img/amazon.png" />
+        <div class="center">
+            <select>
+                <option>
+                    o.b Pro Comfort Tampons, 40ct
+                </option>
+                <option>
+                    Carefree Acti-fresh Pantiliners, 120ct
+                </option>
+            </select>
+        </div>
+        <div class="center" style="margin-top:15px;">
+            <span>Qty</span>
+            <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <img style="position: relative; top: 10px;" src="img/buy_btn.png" />
+        </div>
+        <div class="map-section">
+           <p>Retail locations near me</p>
+           <div id="map-area" data-tap-disabled="true">
+               
+           </div>
+        </div>
     </ion-content>
     <ion-footer-bar class="custom-footer bar-assertive">
       <ion-tabs class="tabs-positive">
