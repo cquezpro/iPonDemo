@@ -1,11 +1,11 @@
 {
   "ProjectName": "iPon Demo",
-  "ProjectGuid": "32bb52c5-b416-4f8d-aeec-467882e4a4e5",
+  "ProjectGuid": "8fc7cf7d-208f-487b-9de9-8b1e2d83b4a3",
   "projectVersion": 1,
-  "AppIdentifier": "com.telerik.iPonDemo",
+  "AppIdentifier": "com.tkeg.TestBLE",
   "DisplayName": "iPon Demo",
   "Author": "",
-  "Description": "iPon Demo",
+  "Description": "TestBLE",
   "BundleVersion": "1.0",
   "AndroidVersionCode": "1",
   "iOSDeviceFamily": [
@@ -32,14 +32,38 @@
     "ID_CAP_WEBBROWSERCOMPONENT"
   ],
   "WP8Requirements": [],
-  "WP8PublisherID": "{9050a342-49e5-4a38-a59d-6cd1d10c99df}",
-  "WP8ProductID": "{c94b2d6a-df5c-4ce9-95db-83a924d0daf6}",
+  "WP8PublisherID": "{2339cefb-72b3-4711-a761-07691a925861}",
+  "WP8ProductID": "{3f7072ea-36a9-4b5d-aa1e-4e5e478251d8}",
   "WPSdk": "8.0",
-  "WP8PackageIdentityName": "1234Telerik.iPonDemo",
+  "WP8PackageIdentityName": "1234Telerik.TestBLE",
   "WP8WindowsPublisherName": "CN=Telerik",
   "WP8SupportedResolutions": [
     "ID_RESOLUTION_WVGA",
     "ID_RESOLUTION_WXGA",
     "ID_RESOLUTION_HD720P"
+  ],
+  "iOSDeploymentTarget": "6.0",
+  "CorePlugins": [
+    "com.megster.cordova.ble@1.0.2",
+    "org.apache.cordova.battery-status",
+    "org.apache.cordova.camera",
+    "org.apache.cordova.console",
+    "org.apache.cordova.contacts",
+    "org.apache.cordova.device",
+    "org.apache.cordova.device-motion",
+    "org.apache.cordova.device-orientation",
+    "org.apache.cordova.dialogs",
+    "org.apache.cordova.file",
+    "org.apache.cordova.file-transfer",
+    "org.apache.cordova.geolocation",
+    "org.apache.cordova.globalization",
+    "org.apache.cordova.inappbrowser",
+    "org.apache.cordova.keyboard",
+    "org.apache.cordova.media",
+    "org.apache.cordova.media-capture",
+    "org.apache.cordova.network-information",
+    "org.apache.cordova.splashscreen",
+    "org.apache.cordova.statusbar",
+    "org.apache.cordova.vibration"
   ]
 }

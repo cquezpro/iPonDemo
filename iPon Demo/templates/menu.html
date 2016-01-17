@@ -1,0 +1,54 @@
+<style>
+  .menu_item {
+    border: solid 1px #ddd !important;
+    font-size: 20px;
+  }
+</style>
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="left">
+    <header class="bar bar-header">
+        <div class="title">iPonDemo Menu</div>
+    </header>
+    <ion-content style="top: 43px;">
+      <ion-list>
+        <ion-item class="menu_item" href="#/app/welcome" menu-toggle="left">
+          <i class="icon ion-android-information"></i>
+          <span style="margin-left:10px;">Welcome</span>
+        </ion-item>
+        <ion-item class="menu_item" href="#/app/contact-list" menu-toggle="left">
+          <i class="icon ion-person"></i>        
+          <span style="margin-left:10px;">Contacts</span>
+        </ion-item>
+		<!--<ion-item class="menu_item" href="" menu-toggle="left">
+			<i class="icon ion-person"></i>			   
+			<span style="margin-left:16px;">Companies</span>
+		</ion-item>
+		<ion-item class="menu_item" href="" menu-toggle="left">
+			<i class="icon ion-android-chat"></i>	
+			<span style="margin-left:10px;">Requirements</span>			
+		</ion-item>
+        <ion-item class="menu_item" href="" menu-toggle="left">
+          <i class="icon ion-android-chat"></i> 
+          <span style="margin-left:10px;">Placements</span>     
+        </ion-item>
+        <ion-item class="menu_item" href="" menu-toggle="left">
+          <i class="icon ion-android-chat"></i> 
+          <span style="margin-left:10px;">Timesheets</span>     
+        </ion-item>-->
+        <ion-item class="menu_item" href="#/login" menu-toggle="left">
+          <i class="icon ion-log-out"></i> 
+          <span style="margin-left:10px;">Logoff</span>     
+        </ion-item>
+	   </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

@@ -1,0 +1,89 @@
+<ion-view view-title="Contact">
+    <ion-nav-bar>
+	  <ion-nav-back-button class="button-clear">
+	    <i class="ion-chevron-left"></i> Back
+	  </ion-nav-back-button>
+	</ion-nav-bar>
+	<ion-content has-header="true" padding="true">
+		 <div>
+		    <ion-card>
+		         <ion-item>
+		             <ion-item-content>
+		                 <h2>{{contact.FullName}}</h2>
+		                 <p>{{contact.JobTitle}}</p>
+		                 <img ng-show="contact.ContactPhoto" id="contact-photo"  alt="photo" />
+		             </ion-item-content>
+		         </ion-item>
+		         <ion-item ng-show="contact.ContactType != 'Candidate'">
+		             <h2>Company</h2>
+		             <p>{{contact.CompanyName}}</p>
+		         </ion-item>
+		         <ion-item ng-click="openMap();" ng-show="contact.ContactType != 'Candidate'">
+					 <i class="map_icon icon ion-map"></i>
+		             <h2>Company Address</h2>
+		             <p style="white-space: pre-wrap;">{{contact.CompanyAddressStreet}}</p>
+		             <p>{{contact.CompanyAddressCity}}</p>
+		             <p>{{contact.CompanyAddressCounty}}</p>
+		             <p>{{contact.CompanyAddressPostCode}}</p>
+		             <p>{{contact.CompanyAddressCountry}}</p>		             
+		         </ion-item>
+				 <ion-item ng-show="contact.WorkTelNo">
+			         <a href="tel:{{contact.WorkTelNo}}">
+			             <i class="contact_icon icon ion-android-call"></i>
+			             <h2>Work Phone</h2>
+			             <p>{{contact.WorkTelNo}}</p>
+			         </a>
+		         </ion-item>
+				 <ion-item ng-show="contact.WorkMobileTelNo">
+			         <a href="tel:{{contact.WorkMobileTelNo}}">
+			             <i class="contact_icon icon ion-android-call"></i>
+			             <h2>Call Work Mobile</h2>
+			             <p>{{contact.WorkMobileTelNo}}</p>
+			         </a>
+			     </ion-item>
+				 <ion-item ng-show="contact.WorkMobileTelNo">
+			         <a ng-click="sendSMS();" href="">
+			             <i class="contact_icon icon ion-android-chat"></i>
+			             <h2>Text Work Mobile</h2>
+			             <p>{{contact.WorkMobileTelNo}}</p>
+			         </a>
+			     </ion-item>
+				 <ion-item ng-show="contact.WorkEMail">
+			         <a href="mailto:{{contact.WorkEMail}}">
+			             <i class="contact_icon icon ion-email"></i>
+			             <h2>Work Email</h2>
+			             <p>{{contact.WorkEMail}}</p>
+			         </a>
+		         </ion-item>
+			    <ion-item ng-show="contact.HomeAddressTelNo">
+			         <a href="tel:{{contact.HomeAddressTelNo}}">
+			             <i class="contact_icon icon ion-android-call"></i>
+			             <h2>Home Phone</h2>
+			             <p>{{contact.HomeAddressTelNo}}</p>
+			         </a>
+		         </ion-item>
+				 <ion-item ng-show="contact.MobileTelNo">
+			         <a href="tel:{{contact.MobileTelNo}}">
+			             <i class="contact_icon icon ion-android-call"></i>
+			             <h2>Call Personal Mobile</h2>
+			             <p>{{contact.MobileTelNo}}</p>
+			         </a>
+		         </ion-item>
+				 <ion-item ng-show="contact.MobileTelNo">
+			         <a ng-click="sendSMSPersonal();" href="">
+			             <i class="contact_icon icon ion-android-chat"></i>
+			             <h2>Text Personal Mobile</h2>
+			             <p>{{contact.MobileTelNo}}</p>
+			         </a>
+			     </ion-item>
+		         <ion-item ng-show="contact.PersonalEMail">
+			         <a href="mailto:{{contact.PersonalEMail}}">
+			             <i class="contact_icon icon ion-email"></i>
+			             <h2>Personal Email</h2>
+			             <p>{{contact.PersonalEMail}}</p>
+			         </a>
+			     </ion-item>
+		     </ion-card>
+		 </div>
+	</ion-content>	
+</ion-view>

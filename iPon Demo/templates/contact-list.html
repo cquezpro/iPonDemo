@@ -1,0 +1,30 @@
+<ion-view view-title="Contact List">
+    <ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	 </ion-nav-buttons>
+  	<ion-header class="search_header">
+        <ion-input>
+            <input type="text" ng-model="searchKey" placeholder="Search..." ng-enter="changeSearchKey()">
+        </ion-input>
+    </ion-header>
+ <ion-content class="contactlist_content" has-header="true" has-footer="true" padding="true">
+    <ion-list>        
+        <ion-item ng-repeat="contact in contactlist" ng-click="itemTapped($event, contact)">
+            <h2 style="font-weight: bold !important">{{contact.FullName}}</h2>
+            <p>
+                 {{contact.JobTitle}}
+            </p>
+            <p>
+                <span ng-show="contact.ContactType == 'Candidate'">
+                    {{contact.HomeAddressCity}}
+                </span>
+                <span ng-show="contact.ContactType != 'Candidate'">
+                    {{contact.CompanyName}}
+                </span>
+            </p>
+        </ion-item>
+        <ion-infinite-scroll on-infinite="loadMoreData()" ng-if="moredata !== true">  
+        </ion-infinite-scroll>
+    </ion-list>
+</ion-view>

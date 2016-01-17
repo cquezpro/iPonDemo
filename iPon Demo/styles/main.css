@@ -127,6 +127,24 @@
     color: #fff;
 }
 
+#kendoUiMobileApp.km-nova #navigation-container.km-tabstrip .km-button {
+    vertical-align: middle;
+}
+
+#kendoUiMobileApp.km-nova p {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+#kendoUiMobileApp.km-nova span.km-switch.km-switc {
+    color: #ff4350;
+}
+
+#kendoUiMobileApp.km-nova span.km-switch.km-switch-on input[type=checkbox]:checked + span + span {
+    border-color: #ff4350;
+    background-color: #ff4350;
+}
+
 
 /* START_CUSTOM_CODE_kendoUiMobileApp */
 
