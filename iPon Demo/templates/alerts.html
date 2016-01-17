@@ -1,0 +1,95 @@
+<ion-view id="alerts">
+	<ion-header-bar align-title="left" class="custom-header bar-positive">
+	  <div class="buttons">
+	    <button class="custom-button button icon ion-ios-arrow-back" ng-click="goConnect()">Back</button>
+	  </div>
+	  <h1 class="title title-right">Alerts</h1>	  
+	</ion-header-bar>
+    <ion-content class="padding">        
+        <ul style="padding: 30px;">
+            <li>
+                <div class="alert-item" style="width: 60%;float:left;">
+                    <select style="height: 35px;">
+                        <option value="Saturation 90%">Saturation 90%</option>
+                        <option value="Saturation 75%">Saturation 75%</option>
+                        <option value="Saturation 50%">Saturation 50%</option>
+                        <option value="Saturation 25%">Saturation 25%</option>
+                        <option value="Saturation 10%">Saturation 10%</option>
+                    </select>
+                </div>
+                <label class="toggle">
+                   <input type="checkbox">
+                   <div class="track">
+                     <div class="handle"></div>
+                   </div>
+                </label>
+            </li>
+            <li>
+                <div class="alert-item" style="width: 60%;float:left;">
+                    <select style="height: 35px;">
+                        <option value="Time 4h 00m">Time 4h 00m</option>
+                        <option value="Time 3h 00m">Time 3h 00m</option>
+                        <option value="Time 2h 00m">Time 2h 00m</option>
+                        <option value="Time 1h 00m">Time 1h 00m</option>                        
+                    </select>
+                </div>
+                <label class="toggle">
+                   <input type="checkbox">
+                   <div class="track">
+                     <div class="handle"></div>
+                   </div>
+                </label>
+            </li>
+            <li>
+                <div class="alert-item" style="width: 60%;float:left;">
+                    <select style="height: 35px;">
+                        <option value="Saturation 90%">Saturation 90%</option>
+                        <option value="Saturation 75%">Saturation 75%</option>
+                        <option value="Saturation 50%">Saturation 50%</option>
+                        <option value="Saturation 25%">Saturation 25%</option>
+                        <option value="Saturation 10%">Saturation 10%</option>
+                    </select>
+                </div>
+                <label class="toggle">
+                   <input type="checkbox">
+                   <div class="track">
+                     <div class="handle"></div>
+                   </div>
+                </label>
+            </li>
+            <li>
+                <div class="alert-item" style="width: 60%;float:left;">
+                    <select style="height: 35px;">
+                        <option value="Saturation 90%">Saturation 90%</option>
+                        <option value="Saturation 75%">Saturation 75%</option>
+                        <option value="Saturation 50%">Saturation 50%</option>
+                        <option value="Saturation 25%">Saturation 25%</option>
+                        <option value="Saturation 10%">Saturation 10%</option>
+                    </select>
+                </div>
+                <label class="toggle">
+                   <input type="checkbox">
+                   <div class="track">
+                     <div class="handle"></div>
+                   </div>
+                </label>
+            </li>
+        </ul>
+    </ion-content>
+    <ion-footer-bar class="custom-footer bar-assertive">
+      <ion-tabs class="tabs-positive">
+        <ion-tab title="" icon="ion-ios-bell" href="#">
+          <ion-nav-view name="alerts-tab"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="" icon="ion-ios-calendar" href="#/calendar">
+          <ion-nav-view name="calendar-tab"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="" icon="ion-ios-cart" ui-sref="tabs.contact">
+          <ion-nav-view name="contact-tab"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="" icon="ion-help-circled" ui-sref="tabs.contact">
+          <ion-nav-view name="contact-tab"></ion-nav-view>
+        </ion-tab>
+      </ion-tabs>
+   </ion-footer-bar>
+</ion-view>

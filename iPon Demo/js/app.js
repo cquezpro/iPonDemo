@@ -27,10 +27,6 @@ angular.module('iPonDemo', ['ionic', 'ionic.rating', 'iPonDemo.controllers', 'iP
       StatusBar.styleDefault();
     }
   });
-  
-   $rootScope.$on('$locationChangeStart', function(ev, next, current) {
-
-  });
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
@@ -45,52 +41,25 @@ angular.module('iPonDemo', ['ionic', 'ionic.rating', 'iPonDemo.controllers', 'iP
     controller: 'AppCtrl'
   })
 
-  .state('login', {
-    url: "/login",
-    templateUrl: "templates/login.html",
+  .state('connect', {
+    url: "/connect",
+    templateUrl: "templates/connect.html",
     controller: 'LoginCtrl'
   })
 
-  .state('app.welcome', {
-    url: "/welcome",
-    views: {
-      'menuContent': {
-         templateUrl: "templates/welcome.html"
-      }
-    }
+  .state('settings', {
+    url: "/settings",
+    templateUrl: "templates/settings.html",
+    controller: 'SettingCtrl'
   })
 
-  .state('app.map', {
-    url: "/map",
-    views: {
-      'menuContent': {
-		 templateUrl: "templates/map.html"
-      }
-    }
-  })
-
-   .state('app.contact-list', {
-      url: "/contact-list",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/contact-list.html",
-          controller: 'ContactlistCtrl'
-        }
-      }
-    })	
-
-  .state('app.contact', {
-    url: "/contact-list/:contactId",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/contact.html",
-        controller: 'ContactCtrl'
-      }
-    }
+  .state('alerts', {
+    url: "/alerts",
+    templateUrl: "templates/alerts.html",
+    controller: 'AlertCtrl'
   });
   
-  
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/settings');
 });
 

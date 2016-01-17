@@ -3,6 +3,56 @@
 	text-align: center;
 }
 
+/* custom toggle */
+
+.toggle-text > .track {
+
+  width: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+
+}
+
+.toggle-text .handle {
+  left: 7px;
+}
+
+.toggle-text .handle-text {
+  font-size: 24px;
+  color: white;
+
+  position: absolute;
+  top: -4px;
+  
+}
+
+.toggle-text .handle-text-false {
+  left: 36px;
+}
+
+.toggle-text input:checked + .track .handle {
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+  left: calc(100% - 34px);
+  
+/*  -webkit-transform: translate3d(0, 0,0);*/
+}
+.track-text {
+  line-height: 26px;
+  color: white;
+  font-size: 24px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* connect page */
+.setting, .custom-button {
+    background: transparent !important;
+    border: none;
+    font-size: 17px !important;
+}
+
 .waiting-text-big {
 	text-align: center;
 	font-size: 21px;
@@ -17,40 +67,112 @@
 	color: #d60273;
 }
 
-.custom-footer .tab-nav{
+.percent {
+	font-size: 50px;
+	color: white;
+	background: blue;
+	padding: 20px;
+	border-radius: 30px;
+	width: 200px;
+	margin: auto;
+}
+
+.connecting {
+    float: left;
+    background: #C1C1C1;
+    padding: 6px;
+    border-radius: 10px;
+}
+.connected {
+    float: left;
+    color: white;
+    background: #0598a2;
+    padding: 6px;
+    border-radius: 10px;   
+}    
+
+.custom-footer .tab-nav, .custom-header {
     background: #d60273 !important;
     border: none !important;
 }
 
+.blue {
+    background: blue;
+    padding: 5px;
+    width: 200px;
+    margin: auto;
+    border-radius: 10px;
+    color: white;
+}
+
+.small {
+	font-size: 13px;
+}
+
+.big {
+	font-size: 18px;
+}
+
+.light-blue {
+    background: #0598a2;
+    padding: 5px;
+    width: 200px;
+    margin: auto;
+    border-radius: 10px;
+    color: white;
+}
+
+/* Settings Page */
+.setting {
+    text-align: left;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.setting li {
+	background: #DEDADA;
+	margin-bottom: 1px;
+	padding: 5px;
+}
+
+.select p {
+	color: #d60273;
+	font-size: 25px;
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+#settings .product {
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+
+#settings .product span {
+    background: #855da3;
+    padding: 13px;
+    border-radius: 15px;
+    color: white;
+}
+
+/* Alert Page  */
+#alerts .alert-item{
+    float:left;
+    width: 60%;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+#alerts .alert-item select{ 
+    height: 35px;
+    width: 100%;
+}
+#alerts .toggle {
+    margin-top: 5px;
+}
+
 .scroll {
     height: 100%;
-}
- 
-#map {
-    width: 100%;
-    height: 100%;
-}
-
-.popupModal {
-	top: 10%;
-	right: 10%;
-	/* bottom: 20%; */
-	left: 65%;
-	overflow: visible;
-	/* min-height: 240px; */
-	width: 25%;
-	min-height: inherit;
-}
-
-.loginModal {
-	top: 10%;
-	right: 10%;
-	bottom: 20%;
-	left: 15%;
-	overflow: visible;
-	/* min-height: 240px; */
-	width: 70%;
-	min-height: inherit;
 }
 
 .button.button-positive {
@@ -59,20 +181,6 @@
 	color: #fff;
 }
 
-#MapdivChatOuter {
-	position: relative;
-	top: 15px;
-	width: 100%;
-	z-index: 100;
-}
-.divMapChat {
-	width: 100%;
-	min-height: 30px;
-}
-.fl {
-	margin-top: 5px;
-	float: left;
-}
 .btn-1 {
 	background: url(../img/alert.png) no-repeat;
 	height: 50px;
@@ -84,27 +192,10 @@
 	background-size: 100% 100%;
 }
 
-.txtsearchbox {
-	font-size: 18px;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	border-radius: 0px;
-	box-shadow: inset 0px 0px 5px rgb(180, 168, 168),0px -1px 3px 1px #fff;
-	moz-box-shadow: inset 0px 0px 5px rgb(180, 168, 168),0px -1px 3px 1px #fff;
-	webkit-box-shadow: inset 0px 0px 5px rgb(180, 168, 168),0px -1px 3px 1px #fff;
-	padding-left:10px !important;
-}
-
 .bar-footer {
-	position: fixed;
-	bottom: 0px;
+	position: fixed !important;
+	bottom: 0px !important;
 	margin: 0px !important;
-}
-
-.infobox {
-	text-align:center;border:1px solid black; 
-	padding: 5px;   margin-top: 18px;   
-	background:orange;    color:white;    font-family:Arial, Helvetica, sans-serif;    font-size:12px;    padding: 0.5em 0.5em;    -webkit-border-radius: 3px;    -moz-border-radius: 3px;    border-radius: 3x;    text-shadow:0 0px #000000;    -webkit-box-shadow: 0 0  8px #000;    box-shadow: 0 0 8px #000;opacity: 0.95
 }
 
 .item-options-left {
@@ -201,19 +292,8 @@ input {
 	width: 100%;    
 	z-index: 100
 }
+
 .bottom_logo img {
     width: 75px;
     padding: 10px;
-}
-
-.ion-ios7-email-outline:before,
-.ion-ios7-calendar-outline:before,
-.ion-ios7-briefcase-outline:before,
-.ion-ios7-person-outline:before {
-    color: black !important;
-}
-
-.signinBtn  {
-	background-color:  grey !important;
-    border-color: grey !important;
 }

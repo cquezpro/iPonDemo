@@ -51,29 +51,29 @@
         color : black;
         font-weight: bold;
     }
-    .connecting {
-        float: left;
-        background: #C1C1C1;
-        padding: 6px;
-        border-radius: 10px;
-    }
 </style>
 <ion-view>
-    <ion-header-bar align-title="left" class="bar-positive">      
+    <ion-header-bar align-title="left" class="custom-header bar-positive">      
       <h1 class="title">iPon</h1>
       <div class="buttons">
-        <button class="button">
-            <img style="width:25px;padding-top: 3px;" class="setting_icon" src="img/setting.png" alt="setting" />
-        </button>
+        <a href="#/settings">
+            <button class="button setting">
+                <img style="width:25px;padding-top: 3px;" class="setting_icon" src="img/setting.png" alt="setting" />
+            </button>
+        </a>
       </div>
     </ion-header-bar>
     <ion-content class="padding">
         <div>
             <p class="connecting" ng-click="scanBLE()">Connet</p>
+            <p ng-show="!bConnect" class="connected" ng-click="scanBLE()">Conneted</p>
             <img style="float:right; width: 50px;" src="img/charge.png" alt="charge" />
         </div>
-        <form ng-submit="doLogin()" class="login-form">
-            <div  class="center">
+        <form class="login-form">
+            <div class="center percent" ng-show="!bConnect">
+                90%
+            </div>
+            <div class="center ng-hide">
                 <img src="img/waiting.png" alt="waiting" />
             </div>
             <div class="waiting-text-big">
@@ -83,19 +83,27 @@
                 Please make sure your Charm and Sensor are connected
             </div>
         </form>
+        <div class="center blue">
+            <div class="small">It's time to</div>
+            <div class="big">Change</div>
+        </div>
+        <div class="center light-blue">
+            <div class="small">You're doing</div>
+            <div class="big">Great</div>
+        </div>
     </ion-content>
     <ion-footer-bar align-title="left" class="custom-footer bar-assertive">
       <ion-tabs class="tabs-positive">
 
-        <ion-tab title="" icon="ion-ios7-bell" href="#/tab/home">
-          <ion-nav-view name="home-tab"></ion-nav-view>
+        <ion-tab title="" icon="ion-ios-bell" ng-click="goAlert()">
+          <ion-nav-view name="alerts-tab"></ion-nav-view>
         </ion-tab>
 
-        <ion-tab title="" icon="ion-ios7-calendar" href="#/tab/about">
+        <ion-tab title="" icon="ion-ios-calendar" href="#/tab/about">
           <ion-nav-view name="about-tab"></ion-nav-view>
         </ion-tab>
 
-        <ion-tab title="" icon="ion-ios7-cart" ui-sref="tabs.contact">
+        <ion-tab title="" icon="ion-ios-cart" ui-sref="tabs.contact">
           <ion-nav-view name="contact-tab"></ion-nav-view>
         </ion-tab>
 
@@ -104,4 +112,5 @@
         </ion-tab>
 
       </ion-tabs>
+    </ion-footer-bar>
 </ion-view>
