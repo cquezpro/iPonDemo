@@ -55,13 +55,13 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 	$scope.scanBLE = function () {
          ble.isEnabled(
             function () {
-                alert("Bluetooth is enabled");
+                //alert("Bluetooth is enabled");
                 /*ble.scan([], 15, function(device) {
                     alert(JSON.stringify(device));
                 }, function (reason) {
                    alert("BLE Scan failed " + reason);
                 });*/
-                var scanSeconds = 10;
+                var scanSeconds = 30;
                 alert("Scanning for BLE peripherals for " + scanSeconds + " seconds.");
                 ble.startScan([], function (device) {
                 	$scope.bConnect = true;
@@ -96,6 +96,8 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
        $scope.status.bConnect = false;
         $scope.status.bConnected = true;
         $scope.status.bConnecting = false;
+        
+        $scope.scanBLE();
     };
     
     $scope.tryConnected = function() {
@@ -206,6 +208,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
            property.bConnect = false;
            property.bConnected = true;
            property.bConnecting = false;
+           property.use_time = "4 Hours 37 Minutes";
            property.connectedClass = "blue";
            property.connectedSmallText = "It's time to";
            property.connectedBigText = "Change";
@@ -225,6 +228,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
            property.bConnect = false;
            property.bConnected = true;
            property.bConnecting = false;
+           property.use_time = "2 Hours 23 Minutes";
            property.connectedClass = "light-blue";
            property.connectedSmallText = "You're doing";
            property.connectedBigText = "Great";

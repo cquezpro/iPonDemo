@@ -37,7 +37,7 @@
 	}
     .login-form {
         clear: both;
-        padding: 0px 40px 0px 40px;
+        padding: 0px 20px 0px 20px;
     }
     .underline {
         text-decoration: underline;
@@ -50,6 +50,9 @@
     .tab-title {
         color : black;
         font-weight: bold;
+    }
+    .title {
+        font-size: 24px !important;
     }
 </style>
 <ion-view ng-init="init();">
@@ -65,16 +68,16 @@
     </ion-header-bar>
     <ion-content class="padding">
         <div>
-            <p ng-show="status.bConnecting" class="connecting" ng-click="tryConnecting()">Conneting</p>
-            <p ng-hide="status.bConnected || status.bConnecting" class="connect" ng-click="tryConnect()">Connet</p>
-            <p ng-show="status.bConnected" class="connected" ng-click="tryConnected()">Conneted</p>            
+            <p ng-show="status.bConnecting" class="connecting" ng-click="tryConnecting()">Connecting</p>
+            <p ng-hide="status.bConnected || status.bConnecting" class="connect" ng-click="tryConnect()">Connect</p>
+            <p ng-show="status.bConnected" class="connected" ng-click="tryConnected()">Connected</p>            
             <img id="Batt_Url" ng-hide="status.bConnected" style="float:right; width: 50px;" src="img/Batt_0.png" alt="charge" />
             <img id="Batt_Url" ng-show="status.bConnected" style="float:right; width: 50px;" src="img/Batt_100.png" alt="charge" />
         </div>
         <div class="login-form">
             <div class="center" ng-show="status.bConnected">
-                <img ng-if="status.connectedClass == 'blue'" style="width: 200px;" src="img/Pad_90.png" alt="waiting" />
-                <img ng-if="status.connectedClass != 'blue'" style="width: 200px;" src="img/Pad_50.png" alt="waiting" />
+                <img ng-if="status.connectedClass == 'blue'" style="width: 100%;" src="img/Tampon_90.png" alt="waiting" />
+                <img ng-if="status.connectedClass != 'blue'" style="width: 100%;" src="img/Pad_50.png" alt="waiting" />
             </div>
             <div class="center" ng-show="status.bConnecting">
                 <img style="width: 200px;" src="img/waiting.png" alt="waiting" />
