@@ -104,6 +104,10 @@ body {
     left: 0px;
 }
 
+.custom-footer {
+    background: #d60273 !important;    
+}
+
 .pink {
     color: #d60273;    
 }

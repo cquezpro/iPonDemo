@@ -36,7 +36,8 @@
             <input type="date" value="12/13/2015"/>
         </div>
     </ion-content>
-    <ion-footer-bar align-title="left" class="custom-footer bar-assertive">
+    
+     <ion-footer-bar  class="custom-footer bar-assertive">
       <ion-tabs class="tabs-positive">
 
         <ion-tab title="" icon="ion-ios-bell" ng-click="goAlert()">
@@ -44,15 +45,15 @@
         </ion-tab>
 
         <ion-tab title="" icon="ion-ios-calendar">
-          <ion-nav-view name="about-tab"></ion-nav-view>
+          <ion-nav-view name="calendar-tab"></ion-nav-view>
         </ion-tab>
 
         <ion-tab title="" icon="ion-ios-cart" ng-click="goBuy()">
-          <ion-nav-view name="contact-tab"></ion-nav-view>
+          <ion-nav-view name="buy-tab"></ion-nav-view>
         </ion-tab>
 
         <ion-tab title="" icon="ion-help-circled" ng-click="goHelp()">
-          <ion-nav-view name="contact-tab"></ion-nav-view>
+          <ion-nav-view name="help-tab"></ion-nav-view>
         </ion-tab>
 
       </ion-tabs>
