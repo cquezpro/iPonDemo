@@ -46,6 +46,9 @@ body {
 }
 
 /* connect page */
+#connect .tab-item{
+    opacity: 1 !important;
+}
 .setting, .custom-button {
     background: transparent !important;
     border: none;
@@ -116,9 +119,9 @@ body {
 }
 
 .big-text {
-    font-size: 30px;
-    margin-top: 20px;
-    margin-bottom: 40px;
+    font-size: 37px;
+    margin-top: 25px;
+    margin-bottom: 70px;
 }
 
 .tiny-text {
@@ -132,8 +135,8 @@ body {
 
 .explain {
     margin-top: 30px !important;    
-    padding: 8px;
-    width: 200px;
+    padding: 10px;
+    width: 250px;
     margin: auto;
     border-radius: 10px;
     color: white;
@@ -144,11 +147,13 @@ body {
 }
 
 .small {
-	font-size: 17px;
+	font-size: 22px;
+    line-height: 22px;
 }
 
 .big {
-	font-size: 24px;
+	font-size: 30px;
+    line-height: 30px;
 }
 
 .light-blue {
