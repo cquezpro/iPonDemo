@@ -7,7 +7,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 	}
 )
 .service('sharedProperties', function () {
-        var property = [];
+        var property = {};
         return {
             getProperty: function () {
                 return property;
@@ -31,21 +31,27 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         };
 })
 
-.controller('AppCtrl', function($scope, $rootScope, FriendService, $http, $timeout, $ionicLoading,  $interval, $state,  $ionicPopup, $ionicActionSheet, sharedProperties) {	
+.controller('ConnectCtrl', function($scope, $rootScope, FriendService, $http, $timeout, $ionicLoading,  $interval, $state,  $ionicPopup, $ionicActionSheet, sharedProperties) {	
     
     $scope.init = function() {
-        $scope.bConnecting = true;
-        $scope.bConnect = false;    
-        $scope.bConnected = false;
         
-        $scope.use_time = "4 Hours 37 Minutes";
-        $scope.connectedClass = "blue";
-        $scope.connectedSmallText = "It's time to";
-        $scope.connectedBigText = "Change";
+        console.log("init is called");
+        $scope.status = {};
+        $scope.status.bConnecting = true;
+        $scope.status.bConnect = false;    
+        $scope.status.bConnected = false;
+        
+        $scope.status.use_time = "4 Hours 37 Minutes";
+        $scope.status.connectedClass = "blue";
+        $scope.status.connectedSmallText = "It's time to";
+        $scope.status.connectedBigText = "Change";
+        
+        sharedProperties.setProperty($scope.status);
 
         $scope.Batt_URL = "img/Batt_0.png";
     };
 
+    
 	$scope.scanBLE = function () {
          ble.isEnabled(
             function () {
@@ -81,40 +87,54 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     };
 
     $scope.tryConnecting = function() {
-        $scope.bConnecting = false;
-        $scope.bConnect = true;
-        $scope.bConnected = false;
+        $scope.status.bConnecting = false;
+        $scope.status.bConnect = true;
+        $scope.status.bConnected = false;
     };
     
     $scope.tryConnect = function() {
-        $scope.bConnect = false;
-        $scope.bConnected = true;
-        $scope.bConnecting = false;
+       $scope.status.bConnect = false;
+        $scope.status.bConnected = true;
+        $scope.status.bConnecting = false;
     };
     
     $scope.tryConnected = function() {
-        $scope.bConnect = true;
-        $scope.bConnected = false;
-        $scope.bConnecting = false;
-    };
-    
-    $scope.selectProduct = function(idx) {
-         if(idx === 1) {
-           //alert("Tampon");
-           $scope.connectedClass = "blue";
-           $scope.connectedSmallText = "It's time to";
-           $scope.connectedBigText = "Change";
-           $scope.goConnect();
-           $scope.tryConnect();           
-         } else {
-           //alert("Pantiliner");
-           $scope.connectedClass = "light-blue";
-           $scope.connectedSmallText = "You're doing";
-           $scope.connectedBigText = "Great";           
-           $scope.goConnect();
-           $scope.tryConnect();
-         }
+        $scope.status.bConnect = true;
+        $scope.status.bConnected = false;
+        $scope.status.bConnecting = false;       
+        
     };    
+      
+   /*$rootScope.$watch('connectedClass', function(newValue, oldValue) {
+          //update the DOM with newValue
+        console.log(newValue);
+       $scope.status.connectedClass = newValue;
+        //$scope.$digest();
+    });
+    
+    $rootScope.$watch('bConnected', function(newValue, oldValue) {
+          //update the DOM with newValue
+        console.log("bConnected = " + newValue);
+        $scope.status.bConnected = newValue;
+    });
+    
+    $rootScope.$watch('bConnect', function(newValue, oldValue) {
+          //update the DOM with newValue
+        console.log("bConnect = " + newValue);
+        $scope.status.bConnect = newValue;
+    });
+    
+    $rootScope.$watch('bConnecting', function(newValue, oldValue) {
+          //update the DOM with newValue
+        console.log("bConnecting = " + newValue);
+        $scope.status.bConnecting = newValue;
+    });*/    
+
+    $scope.$on('$ionicView.enter', function (viewInfo, state) {
+        console.log('CTRL - $ionicView.enter', viewInfo, state);
+        $scope.status = sharedProperties.getProperty();
+    });
+    
     
     $scope.goConnect = function () {
 		$state.go('connect');
@@ -143,6 +163,76 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     $scope.init();
 })
 
+
+.controller('SettingCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, sharedProperties) {
+    
+    $scope.goConnect = function () {
+		$state.go('connect');
+    };
+    
+    $scope.goSetting = function () {
+		$state.go('settings');
+    };
+
+    $scope.goAlert = function () {
+    	$state.go('alerts');
+    };
+    
+    $scope.goCalendar = function () {
+    	$state.go('calendar');
+    };
+    
+    $scope.goBuy = function () {
+    	$state.go('buy');
+    };
+    
+    $scope.goHelp = function () {
+    	$state.go('help');
+    };
+    
+     $scope.selectProduct = function(idx) {
+         if(idx === 1) {
+           //alert("Tampon");
+           $rootScope.connectedClass = "blue";
+           $rootScope.connectedSmallText = "It's time to";
+           $rootScope.connectedBigText = "Change";
+             
+           var property = {};
+           property = {};
+           property.bConnect = false;
+           property.bConnected = true;
+           property.bConnecting = false;
+           property.connectedClass = "blue";
+           property.connectedSmallText = "It's time to";
+           property.connectedBigText = "Change";
+           
+           sharedProperties.setProperty(property);
+             
+           $scope.goConnect();
+                      
+         } else {
+           //alert("Pantiliner");
+           $rootScope.connectedClass = "light-blue";
+           $rootScope.connectedSmallText = "You're doing";
+           $rootScope.connectedBigText = "Great";
+             
+           var property = {};
+           property = {};
+           property.bConnect = false;
+           property.bConnected = true;
+           property.bConnecting = false;
+           property.connectedClass = "light-blue";
+           property.connectedSmallText = "You're doing";
+           property.connectedBigText = "Great";
+           
+           sharedProperties.setProperty(property);
+             
+           $scope.goConnect();
+             
+         }
+    };    
+})
+
 .controller('AlertCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, sharedProperties) {
     $scope.goConnect = function () {
 		$state.go('connect');
@@ -166,7 +256,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     
     $scope.goHelp = function () {
     	$state.go('help');
-    };;
+    };
 })
 
 .controller('CalendarCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, sharedProperties) {
@@ -223,7 +313,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     };
     
 
-    function initialize() {
+    /*function initialize() {
         var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
         
         var mapOptions = {
@@ -276,7 +366,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
       
       $scope.clickTest = function() {
         alert('Example of infowindow with ng-click')
-      };
+      };*/
 })
 
 .controller('HelpCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, sharedProperties) {

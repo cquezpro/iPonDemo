@@ -52,7 +52,7 @@
         font-weight: bold;
     }
 </style>
-<ion-view>
+<ion-view ng-init="init();">
     <ion-header-bar align-title="left" class="custom-header bar-positive">      
       <h1 class="title">iPon</h1>
       <div class="buttons">
@@ -65,25 +65,26 @@
     </ion-header-bar>
     <ion-content class="padding">
         <div>
-            <p ng-show="bConnecting" class="connecting" ng-click="tryConnecting()">Conneting</p>
-            <p ng-hide="bConnected || bConnecting" class="connect" ng-click="tryConnect()">Connet</p>
-            <p ng-show="bConnected" class="connected" ng-click="tryConnected()">Conneted</p>            
-            <img id="Batt_Url" ng-hide="bConnected" style="float:right; width: 50px;" src="img/Batt_0.png" alt="charge" />
-            <img id="Batt_Url" ng-show="bConnected" style="float:right; width: 50px;" src="img/Batt_100.png" alt="charge" />
+            <p ng-show="status.bConnecting" class="connecting" ng-click="tryConnecting()">Conneting</p>
+            <p ng-hide="status.bConnected || status.bConnecting" class="connect" ng-click="tryConnect()">Connet</p>
+            <p ng-show="status.bConnected" class="connected" ng-click="tryConnected()">Conneted</p>            
+            <img id="Batt_Url" ng-hide="status.bConnected" style="float:right; width: 50px;" src="img/Batt_0.png" alt="charge" />
+            <img id="Batt_Url" ng-show="status.bConnected" style="float:right; width: 50px;" src="img/Batt_100.png" alt="charge" />
         </div>
         <div class="login-form">
-            <div class="center" ng-show="bConnected">
-                <img style="width: 200px;" src="img/Pad_90.png" alt="waiting" />
+            <div class="center" ng-show="status.bConnected">
+                <img ng-if="status.connectedClass == 'blue'" style="width: 200px;" src="img/Pad_90.png" alt="waiting" />
+                <img ng-if="status.connectedClass != 'blue'" style="width: 200px;" src="img/Pad_50.png" alt="waiting" />
             </div>
-            <div class="center" ng-show="bConnecting">
+            <div class="center" ng-show="status.bConnecting">
                 <img style="width: 200px;" src="img/waiting.png" alt="waiting" />
             </div>
-            <div class="center" ng-show="bConnect">
+            <div class="center" ng-show="status.bConnect">
                 <img style="width: 200px;" src="img/Connect_Fail_UI.png" alt="waiting" />
             </div>
         </div>
         
-        <div ng-show="bConnecting">
+        <div ng-show="status.bConnecting">
             <div class="waiting-text-big">
                 Waiting for connection
             </div>
@@ -92,7 +93,7 @@
             </div>
         </div>
         
-        <div ng-show="bConnect">
+        <div ng-show="status.bConnect">
             <div class="waiting-text-big">
                 Try again
             </div>
@@ -101,7 +102,7 @@
             </div>
         </div>
         
-        <div ng-show="bConnected" class="center pink">
+        <div ng-show="status.bConnected" class="center pink">
             <div class="big-text">
                 Saturation
             </div>
@@ -109,16 +110,16 @@
                 Time since your last replacement
             </div>
             <div class="small-text">
-                {{use_time}}
+                {{status.use_time}}
             </div>
         </div>
         
-        <div class="center explain" ng-class="connectedClass" ng-show="bConnected">
+        <div class="center explain" ng-class="status.connectedClass" ng-show="status.bConnected">
             <div class="small">
-                {{connectedSmallText}}
+                {{status.connectedSmallText}}
             </div>
             <div class="big">
-                {{connectedBigText}}
+                {{status.connectedBigText}}
             </div>
         </div>
         <!--<div class="center light-blue" ng-show="bConnected">

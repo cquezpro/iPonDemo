@@ -205,6 +205,10 @@ body {
     margin-bottom: 5px;
 }
 
+#calendar .last-cycle {
+    margin-top: 20px !important;
+}
+
 /* Buy Page*/
 #buy select {
     height: 40px;

@@ -34,23 +34,16 @@ angular.module('iPonDemo', ['ionic', 'ionic.rating', 'iPonDemo.controllers', 'iP
   $ionicConfigProvider.tabs.position("bottom"); 
   $ionicConfigProvider.tabs.style("standard");
   $stateProvider
-  .state('app', {
-    url: "/app",
-    abstract: true,
-    templateUrl: "templates/menu.html",
-    controller: 'AppCtrl'
-  })
-
   .state('connect', {
     url: "/connect",
     templateUrl: "templates/connect.html",
-    controller: 'AppCtrl'
+    controller: 'ConnectCtrl'
   })
 
   .state('settings', {
     url: "/settings",
     templateUrl: "templates/settings.html",
-    controller: 'AppCtrl'
+    controller: 'SettingCtrl'
   })
 
   .state('alerts', {
