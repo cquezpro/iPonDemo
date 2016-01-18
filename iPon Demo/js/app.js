@@ -44,13 +44,13 @@ angular.module('iPonDemo', ['ionic', 'ionic.rating', 'iPonDemo.controllers', 'iP
   .state('connect', {
     url: "/connect",
     templateUrl: "templates/connect.html",
-    controller: 'LoginCtrl'
+    controller: 'AppCtrl'
   })
 
   .state('settings', {
     url: "/settings",
     templateUrl: "templates/settings.html",
-    controller: 'SettingCtrl'
+    controller: 'AppCtrl'
   })
 
   .state('alerts', {

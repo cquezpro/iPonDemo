@@ -31,18 +31,21 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         };
 })
 
-.controller('LoginCtrl', function($scope, $rootScope, FriendService, $http, $timeout, $ionicLoading,  $interval, $state,  $ionicPopup, $ionicActionSheet, sharedProperties) {	
-
-	$scope.bConnecting = true;
-    $scope.bConnect = false;    
-    $scope.bConnected = false;
+.controller('AppCtrl', function($scope, $rootScope, FriendService, $http, $timeout, $ionicLoading,  $interval, $state,  $ionicPopup, $ionicActionSheet, sharedProperties) {	
     
-    $scope.use_time = "4 Hours 37 Minutes";
-    $scope.connectedClass = "blue";
-    $scope.connectedSmallText = "It's time to";
-    $scope.connectedBigText = "Change";
+    $scope.init = function() {
+        $scope.bConnecting = true;
+        $scope.bConnect = false;    
+        $scope.bConnected = false;
+        
+        $scope.use_time = "4 Hours 37 Minutes";
+        $scope.connectedClass = "blue";
+        $scope.connectedSmallText = "It's time to";
+        $scope.connectedBigText = "Change";
 
-    $scope.Batt_URL = "img/Batt_0.png";
+        $scope.Batt_URL = "img/Batt_0.png";
+    };
+
 	$scope.scanBLE = function () {
          ble.isEnabled(
             function () {
@@ -88,35 +91,30 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         $scope.bConnected = true;
         $scope.bConnecting = false;
     };
+    
     $scope.tryConnected = function() {
         $scope.bConnect = true;
         $scope.bConnected = false;
         $scope.bConnecting = false;
     };
     
-    
-    $scope.goSetting = function () {
-		$state.go('settings');
-    };
-
-    $scope.goAlert = function () {
-    	$state.go('alerts');
-    };
-    
-    $scope.goCalendar = function () {
-    	$state.go('calendar');
-    };
-    
-    $scope.goBuy = function () {
-    	$state.go('buy');
-    };
-    
-    $scope.goHelp = function () {
-    	$state.go('help');
-    };
-})
-
-.controller('SettingCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, sharedProperties) {
+    $scope.selectProduct = function(idx) {
+         if(idx === 1) {
+           //alert("Tampon");
+           $scope.connectedClass = "blue";
+           $scope.connectedSmallText = "It's time to";
+           $scope.connectedBigText = "Change";
+           $scope.goConnect();
+           $scope.tryConnect();           
+         } else {
+           //alert("Pantiliner");
+           $scope.connectedClass = "light-blue";
+           $scope.connectedSmallText = "You're doing";
+           $scope.connectedBigText = "Great";           
+           $scope.goConnect();
+           $scope.tryConnect();
+         }
+    };    
     
     $scope.goConnect = function () {
 		$state.go('connect');
@@ -141,6 +139,8 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     $scope.goHelp = function () {
     	$state.go('help');
     };
+    
+    $scope.init();
 })
 
 .controller('AlertCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, sharedProperties) {

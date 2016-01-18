@@ -1,7 +1,7 @@
 <ion-view id="settings">
 	<ion-header-bar align-title="left" class="custom-header bar-positive">
 	  <div class="buttons">
-	    <button class="custom-button button icon ion-ios-arrow-back" ng-click="goConnect()">Back</button>
+	    <button class="custom-button button icon ion-ios-arrow-back" ng-click="goConnect()"></button>
 	  </div>
 	  <h1 class="title title-right">Settings</h1>	  
 	</ion-header-bar>
@@ -15,10 +15,10 @@
         <div class="select">
         	<p>Select your product</p>
         	<div class="products">
-        		<div class="product">
+        		<div class="product" ng-click="selectProduct(1)">
         			<span>Tampon</span>
         		</div>
-        		<div class="product">
+        		<div class="product" ng-click="selectProduct(2)">
         			<span>Pantiliner</span>
         		</div>
         	</div>
