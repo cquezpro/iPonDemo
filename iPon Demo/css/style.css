@@ -1,4 +1,7 @@
 /* Empty. Add your own CSS if you like */
+body {
+    font-family: 'Roboto', serif;        
+}
 .center {
 	text-align: center;
 }
@@ -53,7 +56,7 @@
 	text-align: center;
 	font-size: 21px;
 	color: #d60273;
-	margin-top: 40px;
+	margin-top: 15px;
 	margin-bottom: 10px;
 }
 
@@ -79,6 +82,14 @@
     padding: 6px;
     border-radius: 10px;
 }
+
+.connect {
+    float: left;
+    background: #855da3;
+    padding: 6px;
+    border-radius: 10px;
+}
+
 .connected {
     float: left;
     color: white;
@@ -93,13 +104,35 @@
     left: 0px;
 }
 
-.blue {
-    background: blue;
+.pink {
+    color: #d60273;    
+}
+
+.big-text {
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.tiny-text {
+    font-size: 16px;
+}
+
+.small-text {
+    font-size: 18px;
+}
+
+.explain {
+    margin-top: 30px !important;    
     padding: 5px;
     width: 200px;
     margin: auto;
     border-radius: 10px;
     color: white;
+}
+
+.blue {
+    background: blue;    
 }
 
 .small {
@@ -112,11 +145,6 @@
 
 .light-blue {
     background: #0598a2;
-    padding: 5px;
-    width: 200px;
-    margin: auto;
-    border-radius: 10px;
-    color: white;
 }
 
 /* Settings Page */

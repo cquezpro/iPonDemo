@@ -33,8 +33,16 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 
 .controller('LoginCtrl', function($scope, $rootScope, FriendService, $http, $timeout, $ionicLoading,  $interval, $state,  $ionicPopup, $ionicActionSheet, sharedProperties) {	
 
-	$scope.bConnect = false;
+	$scope.bConnecting = true;
+    $scope.bConnect = false;    
+    $scope.bConnected = false;
+    
+    $scope.use_time = "4 Hours 37 Minutes";
+    $scope.connectedClass = "blue";
+    $scope.connectedSmallText = "It's time to";
+    $scope.connectedBigText = "Change";
 
+    $scope.Batt_URL = "img/Batt_0.png";
 	$scope.scanBLE = function () {
          ble.isEnabled(
             function () {
@@ -69,6 +77,24 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         );        
     };
 
+    $scope.tryConnecting = function() {
+        $scope.bConnecting = false;
+        $scope.bConnect = true;
+        $scope.bConnected = false;
+    };
+    
+    $scope.tryConnect = function() {
+        $scope.bConnect = false;
+        $scope.bConnected = true;
+        $scope.bConnecting = false;
+    };
+    $scope.tryConnected = function() {
+        $scope.bConnect = true;
+        $scope.bConnected = false;
+        $scope.bConnecting = false;
+    };
+    
+    
     $scope.goSetting = function () {
 		$state.go('settings');
     };

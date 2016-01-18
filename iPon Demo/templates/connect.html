@@ -37,7 +37,7 @@
 	}
     .login-form {
         clear: both;
-        padding: 0px 40px 40px 40px;
+        padding: 0px 40px 0px 40px;
     }
     .underline {
         text-decoration: underline;
@@ -65,32 +65,66 @@
     </ion-header-bar>
     <ion-content class="padding">
         <div>
-            <p class="connecting" ng-click="scanBLE()">Connet</p>
-            <p ng-show="!bConnect" class="connected" ng-click="scanBLE()">Conneted</p>
-            <img style="float:right; width: 50px;" src="img/charge.png" alt="charge" />
+            <p ng-show="bConnecting" class="connecting" ng-click="tryConnecting()">Conneting</p>
+            <p ng-hide="bConnected || bConnecting" class="connect" ng-click="tryConnect()">Connet</p>
+            <p ng-show="bConnected" class="connected" ng-click="tryConnected()">Conneted</p>            
+            <img id="Batt_Url" ng-hide="bConnected" style="float:right; width: 50px;" src="img/Batt_0.png" alt="charge" />
+            <img id="Batt_Url" ng-show="bConnected" style="float:right; width: 50px;" src="img/Batt_100.png" alt="charge" />
         </div>
-        <form class="login-form">
-            <div class="center percent" ng-show="!bConnect">
-                90%
+        <div class="login-form">
+            <div class="center" ng-show="bConnected">
+                <img style="width: 200px;" src="img/Pad_90.png" alt="waiting" />
             </div>
-            <div class="center ng-hide">
-                <img src="img/waiting.png" alt="waiting" />
+            <div class="center" ng-show="bConnecting">
+                <img style="width: 200px;" src="img/waiting.png" alt="waiting" />
             </div>
+            <div class="center" ng-show="bConnect">
+                <img style="width: 200px;" src="img/Connect_Fail_UI.png" alt="waiting" />
+            </div>
+        </div>
+        
+        <div ng-show="bConnecting">
             <div class="waiting-text-big">
                 Waiting for connection
             </div>
             <div class="waiting-text-small">
                 Please make sure your Charm and Sensor are connected
             </div>
-        </form>
-        <div class="center blue">
-            <div class="small">It's time to</div>
-            <div class="big">Change</div>
         </div>
-        <div class="center light-blue">
+        
+        <div ng-show="bConnect">
+            <div class="waiting-text-big">
+                Try again
+            </div>
+            <div class="waiting-text-small">
+                Please make sure your Charm and Sensor are connected
+            </div>
+        </div>
+        
+        <div ng-show="bConnected" class="center pink">
+            <div class="big-text">
+                Saturation
+            </div>
+            <div class="tiny-text">
+                Time since your last replacement
+            </div>
+            <div class="small-text">
+                {{use_time}}
+            </div>
+        </div>
+        
+        <div class="center explain" ng-class="connectedClass" ng-show="bConnected">
+            <div class="small">
+                {{connectedSmallText}}
+            </div>
+            <div class="big">
+                {{connectedBigText}}
+            </div>
+        </div>
+        <!--<div class="center light-blue" ng-show="bConnected">
             <div class="small">You're doing</div>
             <div class="big">Great</div>
-        </div>
+        </div>-->
     </ion-content>
     <ion-footer-bar align-title="left" class="custom-footer bar-assertive">
       <ion-tabs class="tabs-positive">
