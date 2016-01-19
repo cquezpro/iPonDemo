@@ -76,8 +76,8 @@
         </div>
         <div class="login-form">
             <div class="center" ng-show="status.bConnected">
-                <img ng-if="status.connectedClass == 'blue'" style="width: 100%;" src="img/Tampon_90.png" alt="waiting" />
-                <img ng-if="status.connectedClass != 'blue'" style="width: 100%;" src="img/Pad_50.png" alt="waiting" />
+                <img class="percent-img" ng-if="status.connectedClass == 'blue'" src="img/Tampon_90.png" alt="waiting" />
+                <img class="percent-img" ng-if="status.connectedClass != 'blue'" src="img/Pad_50.png" alt="waiting" />
             </div>
             <div class="center" ng-show="status.bConnecting">
                 <img style="width: 200px;" src="img/waiting.png" alt="waiting" />
@@ -87,48 +87,48 @@
             </div>
         </div>
         
-        <div ng-show="status.bConnecting">
-            <div class="waiting-text-big">
-                Waiting for connection
+        <div class="">
+            <div ng-show="status.bConnecting">
+                <div class="waiting-text-big">
+                    Waiting for connection
+                </div>
+                <div class="waiting-text-small">
+                    Please make sure your Charm and Sensor are connected
+                </div>
             </div>
-            <div class="waiting-text-small">
-                Please make sure your Charm and Sensor are connected
-            </div>
-        </div>
-        
-        <div ng-show="status.bConnect">
-            <div class="waiting-text-big">
-                Try again
-            </div>
-            <div class="waiting-text-small">
-                Please make sure your Charm and Sensor are connected
-            </div>
-        </div>
-        
-        <div ng-show="status.bConnected" class="center pink">
-            <div class="big-text">
-                Saturation
-            </div>
-            <div class="tiny-text">
-                Time since your last replacement
-            </div>
-            <div class="small-text">
-                {{status.use_time}}
+            
+            <div ng-show="status.bConnect">
+                <div class="waiting-text-big">
+                    Try again
+                </div>
+                <div class="waiting-text-small">
+                    Please make sure your Charm and Sensor are connected
+                </div>
             </div>
         </div>
         
-        <div class="center explain" ng-class="status.connectedClass" ng-show="status.bConnected">
-            <div class="small">
-                {{status.connectedSmallText}}
+        <div class="bottom-text">
+            <div ng-show="status.bConnected" class="center pink">
+                <div class="big-text">
+                    Saturation
+                </div>
+                <div class="tiny-text">
+                    Time since your last replacement
+                </div>
+                <div class="small-text">
+                    {{status.use_time}}
+                </div>
             </div>
-            <div class="big">
-                {{status.connectedBigText}}
+            
+            <div class="center explain" ng-class="status.connectedClass" ng-show="status.bConnected">
+                <div class="small">
+                    {{status.connectedSmallText}}
+                </div>
+                <div class="big">
+                    {{status.connectedBigText}}
+                </div>
             </div>
         </div>
-        <!--<div class="center light-blue" ng-show="bConnected">
-            <div class="small">You're doing</div>
-            <div class="big">Great</div>
-        </div>-->
     </ion-content>
     
     <ion-footer-bar  class="custom-footer">

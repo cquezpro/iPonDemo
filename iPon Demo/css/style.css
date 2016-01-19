@@ -60,6 +60,14 @@ body {
     font-size: 17px !important;
 }
 
+.bottom-text {
+
+}
+
+.percent-img {
+    width: 300px;
+}
+
 .waiting-text-big {
 	text-align: center;
 	font-size: 24px;
@@ -72,6 +80,21 @@ body {
 	text-align: center;
 	font-size: 18px;
 	color: #d60273;
+}
+
+@media only screen and (min-width : 767px) { 
+    .percent-img {
+        width: 400px;
+    }
+    .waiting-text-big {
+    	font-size: 33px;
+    	margin-top: 55px;
+    	margin-bottom: 20px;
+    }
+
+    .waiting-text-small {    	
+    	font-size: 24px;    	
+    }
 }
 
 .percent {
@@ -129,13 +152,34 @@ body {
     margin-bottom: 70px;
 }
 
+@media only screen and (min-width : 767px) { 
+ .big-text {
+    font-size: 44px;
+    margin-top: 65px;
+    margin-bottom: 90px;
+ }
+}
+
 .tiny-text {
     font-size: 20px;
+}
+
+@media only screen and (min-width : 767px) { 
+ .tiny-text {
+    font-size: 24px;
+ }
 }
 
 .small-text {
     margin-top: 10px;
     font-size: 24px;
+}
+
+@media only screen and (min-width : 767px) { 
+.small-text {
+    margin-top: 15px;
+    font-size: 28px;
+ }
 }
 
 .explain {
@@ -145,6 +189,16 @@ body {
     margin: auto;
     border-radius: 10px;
     color: white;
+}
+
+@media only screen and (min-width : 767px) { 
+.explain {
+    margin-top: 50px !important;    
+    padding: 10px;
+    width: 260px;
+    margin: auto;
+    border-radius: 10px;    
+ }    
 }
 
 .blue {
@@ -160,6 +214,19 @@ body {
 	font-size: 30px;
     line-height: 30px;
 }
+
+@media only screen and (min-width : 767px) { 
+.small {
+	font-size: 26px;
+    line-height: 26px;
+}
+
+.big {
+	font-size: 35px;
+    line-height: 35px;
+ }    
+}
+
 
 .light-blue {
     background: #0598a2;
