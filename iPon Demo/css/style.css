@@ -149,7 +149,7 @@ body {
 .big-text {
     font-size: 37px;
     margin-top: 25px;
-    margin-bottom: 70px;
+    margin-bottom: 60px;
 }
 
 @media only screen and (min-width : 767px) { 
@@ -183,7 +183,7 @@ body {
 }
 
 .explain {
-    margin-top: 30px !important;    
+    margin-top: 20px !important;    
     padding: 10px;
     width: 250px;
     margin: auto;
