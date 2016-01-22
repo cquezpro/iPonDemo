@@ -63,14 +63,22 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
                 });*/
                 var scanSeconds = 30;
                 alert("Scanning for BLE peripherals for " + scanSeconds + " seconds.");
-                ble.startScan([], function (device) {
-                	$scope.bConnect = true;
+                ble.scan([], scanSeconds, function(device) {
+                    console.log(JSON.stringify(device));
+                    $scope.bConnect = true;
                     alert(JSON.stringify(device));
+                    console.log(device);
+                    console.log(device.id);
+                    console.log(device.name);
+                    device_id = device.id;
+                    
+                    ble.connect(device_id, connectSuccess, connectFailure);
+                    
                 }, function (reason) {
                    alert("BLE Scan failed " + reason);
                 });
-
-                setTimeout(ble.stopScan,
+                                
+                /*setTimeout(ble.stopScan,
                     scanSeconds * 1000,
                     function () {
                         console.log("Scan complete");
@@ -78,14 +86,25 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
                     function () {
                         console.log("stopScan failed");
                     }
-                );
+                );*/
+                
             },
             function () {
                 alert("Bluetooth is *not* enabled, Please enable Bluetooth");
             }
         );        
     };
+    
+    var connectSuccess = function(deviceInfo) {
+        alert("connectSuccess ");
+        alert(JSON.stringify(deviceInfo));
+        console.log(JSON.stringify(deviceInfo));
+    };
 
+    var connectFailure = function() {
+        alert("connectFailure ");        
+    };
+    
     $scope.tryConnecting = function() {
         $scope.status.bConnecting = false;
         $scope.status.bConnect = true;
