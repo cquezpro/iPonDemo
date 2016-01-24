@@ -126,14 +126,14 @@ body {
 .connected {
     float: left;
     color: white;
-    background: #0598a2;
+    background: #8cc63e;
     padding: 6px;
     border-radius: 10px;
     font-size: 16px;
 }    
 
 .custom-footer .tab-nav, .custom-header {
-    background: #d60273 !important;
+    background: #0598a2 !important;
     border: none !important;
     left: 0px;
 }
