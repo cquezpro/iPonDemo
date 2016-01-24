@@ -263,7 +263,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 .controller('AlertCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, $ionicTabsDelegate, sharedProperties) {
     
     $scope.$on('$ionicView.enter', function (viewInfo, state) {
-        $ionicTabsDelegate.select(0);
+        $ionicTabsDelegate.select(1);
     });
     
     $scope.goConnect = function () {
@@ -294,7 +294,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 .controller('CalendarCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, $ionicTabsDelegate, sharedProperties) {
     
     $scope.$on('$ionicView.enter', function (viewInfo, state) {
-        $ionicTabsDelegate.select(1);
+        $ionicTabsDelegate.select(2);
     });
     
     $scope.goConnect = function () {
@@ -325,7 +325,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 .controller('BuyCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, $compile, $ionicTabsDelegate, sharedProperties) {
 
     $scope.$on('$ionicView.enter', function (viewInfo, state) {
-        $ionicTabsDelegate.select(2);
+        $ionicTabsDelegate.select(3);
     });
     
     $scope.goConnect = function () {

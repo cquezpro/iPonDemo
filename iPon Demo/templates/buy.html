@@ -1,7 +1,7 @@
 <ion-view id="buy">
 	<ion-header-bar align-title="left" class="custom-header bar-positive">
 	  <div class="buttons">
-	    <button class="custom-button button icon ion-ios-arrow-back" ng-click="goConnect()">Home</button>
+	    <button class="custom-button button icon ion-ios-arrow-back" ng-click="goConnect()"></button>
 	  </div>
 	  <h1 class="title title-right">Buy</h1>	  
 	</ion-header-bar>
@@ -37,6 +37,9 @@
     </ion-content>
     <ion-footer-bar align-title="left" class="custom-footer bar-assertive">
       <ion-tabs class="tabs-positive">
+          
+        <ion-tab icon="ion-android-home" ng-click="goConnect()">          
+        </ion-tab>
 
         <ion-tab title="" icon="ion-ios-bell" ng-click="goAlert()">
           <ion-nav-view name="alerts-tab"></ion-nav-view>
@@ -50,9 +53,9 @@
           <ion-nav-view name="contact-tab"></ion-nav-view>
         </ion-tab>
 
-        <ion-tab title="" icon="ion-help-circled" ng-click="goHelp()">
+        <!--<ion-tab title="" icon="ion-help-circled" ng-click="goHelp()">
           <ion-nav-view name="contact-tab"></ion-nav-view>
-        </ion-tab>
+        </ion-tab>-->
 
       </ion-tabs>
     </ion-footer-bar>
