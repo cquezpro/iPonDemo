@@ -33,9 +33,11 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 
 .controller('ConnectCtrl', function($scope, $rootScope, FriendService, $http, $timeout, $ionicLoading,  $interval, $state,  $ionicPopup, $ionicActionSheet, sharedProperties) {	
         
+    $scope.bFound = false;
+    $scope.device_id = "";
+    
     $scope.init = function() {
-        
-        console.log("init is called");
+
         $scope.status = {};
         $scope.status.bConnecting = true;
         $scope.status.bConnect = false;    
@@ -53,6 +55,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 
     
 	$scope.scanBLE = function () {
+        $scope.bFound = false;
          ble.isEnabled(
             function () {
                 //alert("Bluetooth is enabled");
@@ -63,16 +66,30 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
                 });*/
                 var scanSeconds = 30;
                 alert("Scanning for BLE peripherals for " + scanSeconds + " seconds.");
-                ble.scan([], scanSeconds, function(device) {
+                ble.scan([], 10, function(device) {
+                    console.log("---start Scan----");                    
+                    if($scope.bFound == true)
+                        return ;
+                    
                     console.log(JSON.stringify(device));
                     $scope.bConnect = true;
-                    alert(JSON.stringify(device));
-                    console.log(device);
-                    console.log(device.id);
-                    console.log(device.name);
-                    device_id = device.id;
+                    $scope.bFound = true;
+                    //alert(JSON.stringify(device));
+                    //console.log(device);
+                    //console.log(device.id);
+                    //console.log(device.name);
+                    $scope.device_id = device.id;
                     
-                    ble.connect(device_id, connectSuccess, connectFailure);
+                   ble.connect($scope.device_id, connectSuccess, connectFailure);
+                   setTimeout(ble.stopScan,
+                        1 * 1000,
+                        function () {
+                            console.log("Scan complete");
+                        },
+                        function () {
+                            console.log("stopScan failed");
+                        }
+                   );
                     
                 }, function (reason) {
                    alert("BLE Scan failed " + reason);
@@ -99,9 +116,51 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         alert("connectSuccess ");
         alert(JSON.stringify(deviceInfo));
         console.log(JSON.stringify(deviceInfo));
+        
+        service_uuid = "50000000-dead-beef-cafe-000000000000";
+        characteristic_uuid = "50000001-dead-beef-cafe-000000000000";
+        //service_uuid = "1800";
+        //characteristic_uuid = "2a00";
+        //service_uuid = "fff0";
+        //characteristic_uuid = "fff8";
+        
+        ble.read($scope.device_id, service_uuid, characteristic_uuid, readSuccess, readFailure);
+        
+        //service_uuid = "f000ffc0-0451-4000-b000-000000000000";
+        //characteristic_uuid = "f000ffc2-0451-4000-b000-000000000000";
+        
+        ble.startNotification($scope.device_id, service_uuid, characteristic_uuid, notifySuccess, notifyFailure);
+    };
+    
+    var readSuccess = function(arrData) {
+        console.log("read data = " + JSON.stringify(arrData));
+        alert("readSuccess ");
+        /*var array = new Uint8Array(arrData.length);
+       for (var i = 0, l = string.length; i < l; i++) {
+           array[i] = string.charCodeAt(i);
+           console.log(array[i]);
+        }*/
+        //console.log(ab2str(arrData));
+    };
+    
+    var readFailure = function() {
+        alert("readFailure");    
+    };
+    
+    var notifySuccess = function(arrData) {
+        alert("notifySuccess");
+        // Decode the ArrayBuffer into a typed Array based on the data you expect
+        var data = new Uint8Array(arrData);
+        alert("Button state changed to " + data[0]);
+    };
+    
+    var notifyFailure = function() {
+        alert("notifyFailure");    
     };
 
-    var connectFailure = function() {
+
+    var connectFailure = function(err) {
+        console.log(err);
         alert("connectFailure ");        
     };
     
@@ -152,7 +211,6 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     });*/    
 
     $scope.$on('$ionicView.enter', function (viewInfo, state) {
-        console.log('CTRL - $ionicView.enter', viewInfo, state);
         $scope.status = sharedProperties.getProperty();
     });
     
@@ -441,3 +499,15 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 });
 
 
+function ab2str(buf) {
+  return String.fromCharCode.apply(null, new Uint16Array(buf));
+}
+
+function str2ab(str) {
+  var buf = new ArrayBuffer(str.length*2); // 2 bytes for each char
+  var bufView = new Uint16Array(buf);
+  for (var i=0, strLen=str.length; i<strLen; i++) {
+    bufView[i] = str.charCodeAt(i);
+  }
+  return buf;
+}
