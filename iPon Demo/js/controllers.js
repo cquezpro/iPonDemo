@@ -148,10 +148,11 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     };
     
     var notifySuccess = function(arrData) {
-        alert("notifySuccess");
+        alert("notifySuccess");        
+        console.log("notify data = " + JSON.stringify(arrData));
         // Decode the ArrayBuffer into a typed Array based on the data you expect
         var data = new Uint8Array(arrData);
-        alert("Button state changed to " + data[0]);
+        //alert("Button state changed to " + data[0]);
     };
     
     var notifyFailure = function() {
