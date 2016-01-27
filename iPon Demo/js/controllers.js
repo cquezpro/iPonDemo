@@ -176,7 +176,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         
         alert("Battery percentage = " + p);
         
-        if(p>0 && p<25) {
+        if(p>=0 && p<25) {
             $scope.Batt_URL = "img/Batt_0.png";
         } else if(p>=25 && p<50) {
             $scope.Batt_URL = "img/Batt_25.png";
@@ -209,7 +209,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         
         if($scope.status.connectedClass == "blue") { // Tampon
             $scope.Sat_URL = "img/Tampon_90.png";            
-            if(p>0 && p<25) {
+            if(p>=0 && p<25) {
                 $scope.Sat_URL = "img/Tampon_10.png";
             } else if (p>=25 && p<50) {
                 $scope.Sat_URL = "img/Tampon_25.png";
@@ -223,7 +223,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
             
         } else { //Pantiliner
             $scope.Sat_URL = "img/Pad_90.png";
-            if(p>0 && p<25) {
+            if(p>=0 && p<25) {
                 $scope.Sat_URL = "img/Pad_10.png";
             } else if (p>=25 && p<50) {
                 $scope.Sat_URL = "img/Pad_25.png";
