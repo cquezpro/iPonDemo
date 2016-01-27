@@ -170,8 +170,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         var data = new Uint8Array(arrData);
         
         console.log(data[0].toString());
-        var a = data[0].toString();
-        a="80";
+        var a = data[0].toString();        
         var p = parseInt(a);        
         
         alert("Battery percentage = " + p);
