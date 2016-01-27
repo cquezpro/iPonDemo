@@ -118,16 +118,17 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         console.log(JSON.stringify(deviceInfo));
         
         service_uuid = "50000000-dead-beef-cafe-000000000000";
-        characteristic_uuid = "50000001-dead-beef-cafe-000000000000";
+        //characteristic_uuid = "50000001-dead-beef-cafe-000000000000";
+        characteristic_uuid = "50000006-dead-beef-cafe-000000000000";
         //service_uuid = "1800";
         //characteristic_uuid = "2a00";
         //service_uuid = "fff0";
         //characteristic_uuid = "fff8";
         
-        setInterval(function(){ 
+        /*setInterval(function(){ 
             ble.read($scope.device_id, service_uuid, characteristic_uuid, readSuccess, readFailure);
           }, 
-        3000);
+        3000);*/
                 
         //service_uuid = "f000ffc0-0451-4000-b000-000000000000";
         //characteristic_uuid = "f000ffc2-0451-4000-b000-000000000000";
@@ -135,9 +136,8 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         ble.startNotification($scope.device_id, service_uuid, characteristic_uuid, notifySuccess, notifyFailure);
     };
     
-    var readSuccess = function(arrData) {
-        console.log("read data = " + JSON.stringify(arrData));
-        alert("readSuccess ");
+    var readSuccess = function(arrData) {        
+        //alert("readSuccess ");
         /*var array = new Uint8Array(arrData.length);
        for (var i = 0, l = string.length; i < l; i++) {
            array[i] = string.charCodeAt(i);
@@ -145,7 +145,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         }*/
         //console.log(ab2str(arrData));
         var data = new Uint8Array(arrData);        
-        alert("Button state changed to " + data[0]);
+        console.log("data 0 = " + data[0] + "  data 1  = " + data[1]);
     };
     
     var readFailure = function() {
@@ -153,11 +153,9 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     };
     
     var notifySuccess = function(arrData) {
-        alert("notifySuccess");        
-        console.log("notify data = " + JSON.stringify(arrData));
-        // Decode the ArrayBuffer into a typed Array based on the data you expect
-        var data = new Uint8Array(arrData);
-        //alert("Button state changed to " + data[0]);
+        console.log("notifySuccess");        
+        var data = new Uint8Array(arrData);        
+        console.log("data 0 = " + data[0] + "  data 1  = " + data[1]);
     };
     
     var notifyFailure = function() {
