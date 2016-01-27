@@ -70,8 +70,9 @@
             <p ng-show="status.bConnecting" class="connecting" ng-click="tryConnecting()">Connecting</p>
             <p ng-hide="status.bConnected || status.bConnecting" class="connect" ng-click="tryConnect()">Connect</p>
             <p ng-show="status.bConnected" class="connected" ng-click="tryConnected()">Connected</p>            
-            <img id="Batt_Url" ng-hide="status.bConnected" style="float:right; width: 50px;" src="img/Batt_0.png" alt="charge" />
-            <img id="Batt_Url" ng-show="status.bConnected" style="float:right; width: 50px;" src="img/Batt_100.png" alt="charge" />
+            <img id="Batt_Url" style="float:right; width: 50px;" src="{{Batt_URL}}" alt="charge" />
+            <!--<img id="Batt_Url" ng-hide="status.bConnected" style="float:right; width: 50px;" src="{{Batt_URL}}" alt="charge" />-->
+            <!--<img id="Batt_Url" ng-show="status.bConnected" style="float:right; width: 50px;" src="img/Batt_100.png" alt="charge" />-->
         </div>
         <div class="login-form">
             <div class="center" ng-show="status.bConnected">

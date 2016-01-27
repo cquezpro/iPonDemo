@@ -117,9 +117,18 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         alert(JSON.stringify(deviceInfo));
         console.log(JSON.stringify(deviceInfo));
         
-        service_uuid = "50000000-dead-beef-cafe-000000000000";
+        //Battery
+        bat_characteristic_uuid = "50000006-dead-beef-cafe-000000000000";
+        bat_service_uuid = "50000000-dead-beef-cafe-000000000000";
+        ble.startNotification($scope.device_id, bat_service_uuid, bat_characteristic_uuid, bat_notifySuccess, bat_notifyFailure);
+        
+        //Saturation
+        sat_characteristic_uuid = "50000001-dead-beef-cafe-000000000000";
+        sat_service_uuid = "50000000-dead-beef-cafe-000000000000";
+        ble.startNotification($scope.device_id, sat_service_uuid, sat_characteristic_uuid, sat_notifySuccess, sat_notifyFailure);
+        
         //characteristic_uuid = "50000001-dead-beef-cafe-000000000000";
-        characteristic_uuid = "50000006-dead-beef-cafe-000000000000";
+        
         //service_uuid = "1800";
         //characteristic_uuid = "2a00";
         //service_uuid = "fff0";
@@ -129,12 +138,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
             ble.read($scope.device_id, service_uuid, characteristic_uuid, readSuccess, readFailure);
           }, 
         3000);
-        */
-                
-        //service_uuid = "f000ffc0-0451-4000-b000-000000000000";
-        //characteristic_uuid = "f000ffc2-0451-4000-b000-000000000000";
-        
-        ble.startNotification($scope.device_id, service_uuid, characteristic_uuid, notifySuccess, notifyFailure);
+        */             
     };
     
     var readSuccess = function(arrData) {        
@@ -157,22 +161,45 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         alert("readFailure");    
     };
     
-    var notifySuccess = function(arrData) {
-        console.log("notifySuccess");        
-        var data = new Uint8Array(arrData);        
+    var bat_notifySuccess = function(arrData) {
+        console.log("battery - notifySuccess");        
+        var data = new Uint8Array(arrData);
         
-        console.log(typeof(data[0]));
         console.log(data[0].toString(16));
         var a = data[0].toString(16);
-        console.log(typeof(data[1]));
-        console.log(data[1].toString(16));
-        var b = data[1].toString(16);
+        var p = parseInt(a);
+        if(p>0 && p<25) {
+            $scope.Batt_URL = "img/Batt_0.png";
+        } else if(p>=25 && p<50) {
+            $scope.Batt_URL = "img/Batt_25.png";
+        } else if(p>=50 && p<75) {
+            $scope.Batt_URL = "img/Batt_50.png";
+        } else if(p>=75 && p<100) {
+            $scope.Batt_URL = "img/Batt_75.png";
+        } else if(p>75) {
+            $scope.Batt_URL = "img/Batt_100.png";
+        }
         
-        console.log("data 0 = " + a + "  data 1  = " + b);
+        console.log("battery percentage = " + a);
     };
     
-    var notifyFailure = function() {
-        alert("notifyFailure");    
+    var bat_notifyFailure = function() {
+        alert("battery - notifyFailure");    
+    };
+    
+    
+    var sat_notifySuccess = function(arrData) {
+        console.log("saturation - notifySuccess");        
+        var data = new Uint8Array(arrData);
+        
+        console.log(data[0].toString(16));
+        var a = data[0].toString(16);
+                
+        console.log("saturation percentage = " + a);
+    };
+    
+    var sat_notifyFailure = function() {
+        alert("saturation - notifyFailure");    
     };
 
 
