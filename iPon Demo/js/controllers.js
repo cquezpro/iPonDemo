@@ -154,8 +154,9 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     
     var notifySuccess = function(arrData) {
         console.log("notifySuccess");        
-        var data = new Uint16Array(arrData);        
-        console.log("data 0 = " + data[0]);        
+        var data = new Uint8Array(arrData);        
+        
+        console.log("data 0 = " + data[0].toString(16) + "  data 1  = " + data[1].toString(16));
     };
     
     var notifyFailure = function() {
