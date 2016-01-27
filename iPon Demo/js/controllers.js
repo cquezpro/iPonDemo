@@ -124,8 +124,11 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         //service_uuid = "fff0";
         //characteristic_uuid = "fff8";
         
-        ble.read($scope.device_id, service_uuid, characteristic_uuid, readSuccess, readFailure);
-        
+        setInterval(function(){ 
+            ble.read($scope.device_id, service_uuid, characteristic_uuid, readSuccess, readFailure);
+          }, 
+        3000);
+                
         //service_uuid = "f000ffc0-0451-4000-b000-000000000000";
         //characteristic_uuid = "f000ffc2-0451-4000-b000-000000000000";
         
@@ -141,6 +144,8 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
            console.log(array[i]);
         }*/
         //console.log(ab2str(arrData));
+        var data = new Uint8Array(arrData);        
+        alert("Button state changed to " + data[0]);
     };
     
     var readFailure = function() {
