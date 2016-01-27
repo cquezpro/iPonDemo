@@ -165,8 +165,8 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         console.log("battery - notifySuccess");        
         var data = new Uint8Array(arrData);
         
-        console.log(data[0].toString(16));
-        var a = data[0].toString(16);
+        console.log(data[0].toString());
+        var a = data[0].toString();
         var p = parseInt(a);
         if(p>0 && p<25) {
             $scope.Batt_URL = "img/Batt_0.png";
@@ -190,10 +190,10 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     
     var sat_notifySuccess = function(arrData) {
         console.log("saturation - notifySuccess");        
-        var data = new Uint8Array(arrData);
+        var data = new Uint16Array(arrData);
         
-        console.log(data[0].toString(16));
-        var a = data[0].toString(16);
+        console.log(data[0].toString());
+        var a = data[0].toString();
                 
         console.log("saturation percentage = " + a);
     };
