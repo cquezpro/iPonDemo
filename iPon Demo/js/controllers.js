@@ -128,7 +128,8 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         /*setInterval(function(){ 
             ble.read($scope.device_id, service_uuid, characteristic_uuid, readSuccess, readFailure);
           }, 
-        3000);*/
+        3000);
+        */
                 
         //service_uuid = "f000ffc0-0451-4000-b000-000000000000";
         //characteristic_uuid = "f000ffc2-0451-4000-b000-000000000000";
@@ -144,7 +145,11 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
            console.log(array[i]);
         }*/
         //console.log(ab2str(arrData));
-        var data = new Uint8Array(arrData);        
+        var data = new Uint8Array(arrData);
+        console.log(typeof(data[0]));
+        console.log(data[0].toString(16));
+        console.log(typeof(data[1]));
+        console.log(data[1].toString(16));
         console.log("data 0 = " + data[0] + "  data 1  = " + data[1]);
     };
     
@@ -156,7 +161,14 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         console.log("notifySuccess");        
         var data = new Uint8Array(arrData);        
         
-        console.log("data 0 = " + data[0].toString(16) + "  data 1  = " + data[1].toString(16));
+        console.log(typeof(data[0]));
+        console.log(data[0].toString(16));
+        var a = data[0].toString(16);
+        console.log(typeof(data[1]));
+        console.log(data[1].toString(16));
+        var b = data[1].toString(16);
+        
+        console.log("data 0 = " + a + "  data 1  = " + b);
     };
     
     var notifyFailure = function() {
