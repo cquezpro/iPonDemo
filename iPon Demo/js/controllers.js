@@ -1,3 +1,5 @@
+var gProduct = 1;
+
 angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 .constant('baseURL','http://crm.welcomepickups.com/drivers-app/api/v1/')
 .constant('api','/some/api/info')
@@ -51,8 +53,10 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         sharedProperties.setProperty($scope.status);
 
         $scope.Batt_URL = "img/Batt_0.png";
-    };
-
+        $scope.Sat_URL = "img/Tampon_90.png";
+                
+    };    
+    
     
 	$scope.scanBLE = function () {
         $scope.bFound = false;
@@ -167,7 +171,11 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         
         console.log(data[0].toString());
         var a = data[0].toString();
-        var p = parseInt(a);
+        a="80";
+        var p = parseInt(a);        
+        
+        alert("Battery percentage = " + p);
+        
         if(p>0 && p<25) {
             $scope.Batt_URL = "img/Batt_0.png";
         } else if(p>=25 && p<50) {
@@ -179,6 +187,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         } else if(p>75) {
             $scope.Batt_URL = "img/Batt_100.png";
         }
+        console.log("Battery image = " + $scope.Batt_URL);
         
         console.log("battery percentage = " + a);
     };
@@ -194,6 +203,38 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         
         console.log(data[0].toString());
         var a = data[0].toString();
+        
+        var p = parseInt(a) * 100/1800;        
+        alert("Saturation percentage = " + p);
+        
+        if($scope.status.connectedClass == "blue") { // Tampon
+            $scope.Sat_URL = "img/Tampon_90.png";            
+            if(p>0 && p<25) {
+                $scope.Sat_URL = "img/Tampon_10.png";
+            } else if (p>=25 && p<50) {
+                $scope.Sat_URL = "img/Tampon_25.png";
+            } else if (p>=50 && p<75) {
+                $scope.Sat_URL = "img/Tampon_50.png";
+            } else if (p>=75 && p<90) {
+                $scope.Sat_URL = "img/Tampon_75.png";
+            } else {
+                $scope.Sat_URL = "img/Tampon_90.png";
+            }
+            
+        } else { //Pantiliner
+            $scope.Sat_URL = "img/Pad_90.png";
+            if(p>0 && p<25) {
+                $scope.Sat_URL = "img/Pad_10.png";
+            } else if (p>=25 && p<50) {
+                $scope.Sat_URL = "img/Pad_25.png";
+            } else if (p>=50 && p<75) {
+                $scope.Sat_URL = "img/Pad_50.png";
+            } else if (p>=75 && p<90) {
+                $scope.Sat_URL = "img/Pad_75.png";
+            } else {
+                $scope.Sat_URL = "img/Pad_90.png";
+            }
+        }
                 
         console.log("saturation percentage = " + a);
     };
@@ -214,8 +255,8 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         $scope.status.bConnected = false;
     };
     
-    $scope.tryConnect = function() {
-       $scope.status.bConnect = false;
+    $scope.tryConnect = function() {        
+        $scope.status.bConnect = false;
         $scope.status.bConnected = true;
         $scope.status.bConnecting = false;
         
@@ -256,6 +297,12 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 
     $scope.$on('$ionicView.enter', function (viewInfo, state) {
         $scope.status = sharedProperties.getProperty();
+        
+        if($scope.status.connectedClass == "blue") {
+            $scope.Sat_URL = "img/Tampon_90.png";    
+        } else {
+            $scope.Sat_URL = "img/Pad_90.png";    
+        }
     });
     
     
@@ -319,6 +366,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     
      $scope.selectProduct = function(idx) {
          if(idx === 1) {
+           gProduct = 1;
            //alert("Tampon");
            $rootScope.connectedClass = "blue";
            $rootScope.connectedSmallText = "It's time to";
@@ -339,6 +387,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
            $scope.goConnect();
                       
          } else {
+           gProduct = 2;
            //alert("Pantiliner");
            $rootScope.connectedClass = "light-blue";
            $rootScope.connectedSmallText = "You're doing";

@@ -76,8 +76,9 @@
         </div>
         <div class="login-form">
             <div class="center" ng-show="status.bConnected">
-                <img class="percent-img" ng-if="status.connectedClass == 'blue'" src="img/Tampon_90.png" alt="waiting" />
-                <img class="percent-img" ng-if="status.connectedClass != 'blue'" src="img/Pad_50.png" alt="waiting" />
+                <!--<img class="percent-img" ng-if="status.connectedClass == 'blue'" src="img/Tampon_90.png" alt="waiting" />
+                <img class="percent-img" ng-if="status.connectedClass != 'blue'" src="img/Pad_50.png" alt="waiting" />-->
+                <img class="percent-img" src="{{Sat_URL}}" alt="waiting" />
             </div>
             <div class="center" ng-show="status.bConnecting">
                 <img style="width: 200px;" src="img/waiting.png" alt="waiting" />
