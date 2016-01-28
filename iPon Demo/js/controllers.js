@@ -54,7 +54,12 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 
         $scope.Batt_URL = "img/Batt_0.png";
         $scope.Sat_URL = "img/Tampon_90.png";
-                
+        
+        //Run Scan BLE
+        setTimeout(function(){ 
+           $scope.scanBLE(); 
+        }, 2000);
+        
     };    
     
     
@@ -62,15 +67,9 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         $scope.bFound = false;
          ble.isEnabled(
             function () {
-                //alert("Bluetooth is enabled");
-                /*ble.scan([], 15, function(device) {
-                    alert(JSON.stringify(device));
-                }, function (reason) {
-                   alert("BLE Scan failed " + reason);
-                });*/
                 var scanSeconds = 30;
-                alert("Scanning for BLE peripherals for " + scanSeconds + " seconds.");
-                ble.scan([], 10, function(device) {
+                //alert("Scanning for BLE peripherals for " + scanSeconds + " seconds.");
+                ble.startScan([], function(device) {
                     console.log("---start Scan----");                    
                     if($scope.bFound == true)
                         return ;
@@ -78,36 +77,30 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
                     console.log(JSON.stringify(device));
                     $scope.bConnect = true;
                     $scope.bFound = true;
-                    //alert(JSON.stringify(device));
-                    //console.log(device);
-                    //console.log(device.id);
-                    //console.log(device.name);
+                    console.log(device.id);
                     $scope.device_id = device.id;
                     
-                   ble.connect($scope.device_id, connectSuccess, connectFailure);
-                   setTimeout(ble.stopScan,
-                        1 * 1000,
-                        function () {
-                            console.log("Scan complete");
-                        },
-                        function () {
-                            console.log("stopScan failed");
-                        }
-                   );
+                   ble.connect($scope.device_id, connectSuccess, connectFailure);                   
                     
                 }, function (reason) {
                    alert("BLE Scan failed " + reason);
                 });
-                                
-                /*setTimeout(ble.stopScan,
+                
+                setTimeout(ble.stopScan,
                     scanSeconds * 1000,
                     function () {
-                        console.log("Scan complete");
+                        console.log("Scan complete");                        
+                        if($scope.bFound == false) {
+                           $scope.tryConnecting();
+                        }
                     },
                     function () {
-                        console.log("stopScan failed");
+                        console.log("stopScan failed");                        
+                        if($scope.bFound == false) {
+                            $scope.tryConnecting();
+                        }
                     }
-                );*/
+               );
                 
             },
             function () {
@@ -118,7 +111,15 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     
     var connectSuccess = function(deviceInfo) {
         alert("connectSuccess ");
-        alert(JSON.stringify(deviceInfo));
+        
+        setTimeout(function () {
+            $scope.$apply(function () {
+                $scope.status.bConnect = false;
+                $scope.status.bConnected = true;
+                $scope.status.bConnecting = false;
+            });
+        }, 500);
+        
         console.log(JSON.stringify(deviceInfo));
         
         //Battery
@@ -173,7 +174,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         var a = data[0].toString();        
         var p = parseInt(a);        
         
-        alert("Battery percentage = " + p);
+        console.log("Battery percentage = " + p);
         
         if(p>=0 && p<25) {
             $scope.Batt_URL = "img/Batt_0.png";
@@ -186,7 +187,6 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         } else if(p>75) {
             $scope.Batt_URL = "img/Batt_100.png";
         }
-        console.log("Battery image = " + $scope.Batt_URL);
         
         console.log("battery percentage = " + a);
     };
@@ -194,8 +194,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     var bat_notifyFailure = function() {
         alert("battery - notifyFailure");    
     };
-    
-    
+            
     var sat_notifySuccess = function(arrData) {
         console.log("saturation - notifySuccess");        
         var data = new Uint16Array(arrData);
@@ -204,7 +203,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         var a = data[0].toString();
         
         var p = parseInt(a) * 100/1800;        
-        alert("Saturation percentage = " + p);
+        console.log("Saturation percentage = " + p);
         
         if($scope.status.connectedClass == "blue") { // Tampon
             $scope.Sat_URL = "img/Tampon_90.png";            
@@ -245,28 +244,44 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 
     var connectFailure = function(err) {
         console.log(err);
-        alert("connectFailure ");        
+        alert("connectFailure ");
+        $scope.tryConnecting();
     };
     
     $scope.tryConnecting = function() {
-        $scope.status.bConnecting = false;
-        $scope.status.bConnect = true;
-        $scope.status.bConnected = false;
+        setTimeout(function () {
+            $scope.$apply(function () {
+                $scope.status.bConnecting = false;
+                $scope.status.bConnect = true;
+                $scope.status.bConnected = false;
+            });
+        }, 500);
+        
     };
     
     $scope.tryConnect = function() {        
-        $scope.status.bConnect = false;
-        $scope.status.bConnected = true;
-        $scope.status.bConnecting = false;
+        /*setTimeout(function () {
+            $scope.$apply(function () {
+                $scope.status.bConnect = false;
+                $scope.status.bConnected = true;
+                $scope.status.bConnecting = false;
+            });
+        }, 500);*/
         
         $scope.scanBLE();
     };
     
     $scope.tryConnected = function() {
-        $scope.status.bConnect = true;
-        $scope.status.bConnected = false;
-        $scope.status.bConnecting = false;       
         
+        setTimeout(function () {
+            $scope.$apply(function () {
+                $scope.status.bConnect = true;
+                $scope.status.bConnected = false;
+                $scope.status.bConnecting = false;
+            });
+        }, 500);
+        
+        $scope.Batt_URL = "img/Batt_0.png";
     };    
       
    /*$rootScope.$watch('connectedClass', function(newValue, oldValue) {
@@ -327,9 +342,8 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     
     $scope.goHelp = function () {
     	$state.go('help');
-    };
+    };    
     
-    $scope.init();
 })
 
 
