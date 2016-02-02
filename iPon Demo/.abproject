@@ -63,5 +63,6 @@
     "org.apache.cordova.splashscreen",
     "org.apache.cordova.statusbar",
     "org.apache.cordova.vibration"
-  ]
+  ],
+  "iOSDeploymentTarget": "6.0"
 }
