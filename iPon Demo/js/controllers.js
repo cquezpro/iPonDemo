@@ -71,8 +71,12 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
                 //alert("Scanning for BLE peripherals for " + scanSeconds + " seconds.");
                 ble.startScan([], function(device) {
                     console.log("---start Scan----");                    
-                    if($scope.bFound == true)
+                    if($scope.bFound == true) {
                         return ;
+                    }
+                    if(device.name != "TK0583 iPon") {
+                        return ;
+                    }
                     
                     console.log(JSON.stringify(device));
                     $scope.bConnect = true;
@@ -132,22 +136,23 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         sat_service_uuid = "50000000-dead-beef-cafe-000000000000";
         ble.startNotification($scope.device_id, sat_service_uuid, sat_characteristic_uuid, sat_notifySuccess, sat_notifyFailure);
         
-        //characteristic_uuid = "50000001-dead-beef-cafe-000000000000";
+        /*characteristic_uuid = "f000ffc1-0451-4000-b000-000000000000";
+        service_uuid = "f000ffc0-0451-4000-b000-000000000000";
+        ble.startNotification($scope.device_id, service_uuid, characteristic_uuid, sat_notifySuccess, sat_notifyFailure);*/
         
         //service_uuid = "1800";
         //characteristic_uuid = "2a00";
         //service_uuid = "fff0";
-        //characteristic_uuid = "fff8";
+        //characteristic_uuid = "fff8";        
         
         /*setInterval(function(){ 
             ble.read($scope.device_id, service_uuid, characteristic_uuid, readSuccess, readFailure);
           }, 
-        3000);
-        */             
+        3000);*/                     
     };
     
     var readSuccess = function(arrData) {        
-        //alert("readSuccess ");
+        alert("readSuccess ");
         /*var array = new Uint8Array(arrData.length);
        for (var i = 0, l = string.length; i < l; i++) {
            array[i] = string.charCodeAt(i);
@@ -192,7 +197,12 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     };
     
     var bat_notifyFailure = function() {
-        alert("battery - notifyFailure");    
+        alert("battery - notifyFailure");
+        ble.disconnect($scope.device_id, function () {
+            //disconnect success
+        }, function() {
+            // failture
+        });
     };
             
     var sat_notifySuccess = function(arrData) {
@@ -238,7 +248,12 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     };
     
     var sat_notifyFailure = function() {
-        alert("saturation - notifyFailure");    
+        alert("saturation - notifyFailure");            
+        ble.disconnect($scope.device_id, function () {
+            //disconnect success
+        }, function() {
+            // failture
+        });
     };
 
 
