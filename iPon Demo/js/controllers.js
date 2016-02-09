@@ -84,7 +84,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
                     console.log(device.id);
                     $scope.device_id = device.id;
                     
-                   ble.connect($scope.device_id, connectSuccess, connectFailure);                   
+                   ble.connect($scope.device_id, connectSuccess, connectFailure);
                     
                 }, function (reason) {
                    alert("BLE Scan failed " + reason);
@@ -263,11 +263,22 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
                 $scope.status.bConnect = true;
                 $scope.status.bConnected = false;
                 $scope.status.bConnecting = false;
+                
+                ble.disconnect($scope.device_id, disconnectSuccess, disconnectFailure);
             });
         }, 500);
         
-        $scope.Batt_URL = "img/Batt_0.png";
-    };    
+        $scope.Batt_URL = "img/Batt_0.png";       
+        
+    };
+    
+    var disconnectSuccess = function () {
+        alert("disconnectSuccess ");
+    };
+    
+    var disconnectFailure = function () {
+        alert("disconnectFailure ");
+    };
       
    /*$rootScope.$watch('connectedClass', function(newValue, oldValue) {
           //update the DOM with newValue
@@ -306,36 +317,41 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     });
     
     $scope.updateSaturationStatus = function () {
-        alert("updateSaturationStatus percent = " + $scope.percent);
+        console.log("updateSaturationStatus percent = " + $scope.percent);
         var p = $scope.percent;
-        if($scope.status.connectedClass == "blue") { // Tampon
-            $scope.Sat_URL = "img/Tampon_90.png";            
-            if(p>=0 && p<25) {
-                $scope.Sat_URL = "img/Tampon_10.png";
-            } else if (p>=25 && p<50) {
-                $scope.Sat_URL = "img/Tampon_25.png";
-            } else if (p>=50 && p<75) {
-                $scope.Sat_URL = "img/Tampon_50.png";
-            } else if (p>=75 && p<90) {
-                $scope.Sat_URL = "img/Tampon_75.png";
-            } else {
-                $scope.Sat_URL = "img/Tampon_90.png";
-            }
-            
-        } else { //Pantiliner
-            $scope.Sat_URL = "img/Pad_90.png";
-            if(p>=0 && p<25) {
-                $scope.Sat_URL = "img/Pad_10.png";
-            } else if (p>=25 && p<50) {
-                $scope.Sat_URL = "img/Pad_25.png";
-            } else if (p>=50 && p<75) {
-                $scope.Sat_URL = "img/Pad_50.png";
-            } else if (p>=75 && p<90) {
-                $scope.Sat_URL = "img/Pad_75.png";
-            } else {
-                $scope.Sat_URL = "img/Pad_90.png";
-            }
-        }  
+        
+        setTimeout(function () {
+            $scope.$apply(function () {
+                if($scope.status.connectedClass == "blue") { // Tampon
+                    $scope.Sat_URL = "img/Tampon_90.png";            
+                    if(p>=0 && p<25) {
+                        $scope.Sat_URL = "img/Tampon_10.png";
+                    } else if (p>=25 && p<50) {
+                        $scope.Sat_URL = "img/Tampon_25.png";
+                    } else if (p>=50 && p<75) {
+                        $scope.Sat_URL = "img/Tampon_50.png";
+                    } else if (p>=75 && p<90) {
+                        $scope.Sat_URL = "img/Tampon_75.png";
+                    } else {
+                        $scope.Sat_URL = "img/Tampon_90.png";
+                    }
+                    
+                } else { //Pantiliner
+                    $scope.Sat_URL = "img/Pad_90.png";
+                    if(p>=0 && p<25) {
+                        $scope.Sat_URL = "img/Pad_10.png";
+                    } else if (p>=25 && p<50) {
+                        $scope.Sat_URL = "img/Pad_25.png";
+                    } else if (p>=50 && p<75) {
+                        $scope.Sat_URL = "img/Pad_50.png";
+                    } else if (p>=75 && p<90) {
+                        $scope.Sat_URL = "img/Pad_75.png";
+                    } else {
+                        $scope.Sat_URL = "img/Pad_90.png";
+                    }
+                }  
+            });
+        }, 500);        
     }
     
     
