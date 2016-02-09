@@ -39,7 +39,6 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     $scope.device_id = "";
     
     $scope.init = function() {
-
         $scope.status = {};
         $scope.status.bConnecting = true;
         $scope.status.bConnect = false;    
@@ -74,6 +73,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
                     if($scope.bFound == true) {
                         return ;
                     }
+                    
                     if(device.name != "TK0583 iPon") {
                         return ;
                     }
@@ -214,37 +214,8 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         
         var p = parseInt(a) * 100/1800;        
         console.log("Saturation percentage = " + p);
-        
-        if($scope.status.connectedClass == "blue") { // Tampon
-            $scope.Sat_URL = "img/Tampon_90.png";            
-            if(p>=0 && p<25) {
-                $scope.Sat_URL = "img/Tampon_10.png";
-            } else if (p>=25 && p<50) {
-                $scope.Sat_URL = "img/Tampon_25.png";
-            } else if (p>=50 && p<75) {
-                $scope.Sat_URL = "img/Tampon_50.png";
-            } else if (p>=75 && p<90) {
-                $scope.Sat_URL = "img/Tampon_75.png";
-            } else {
-                $scope.Sat_URL = "img/Tampon_90.png";
-            }
-            
-        } else { //Pantiliner
-            $scope.Sat_URL = "img/Pad_90.png";
-            if(p>=0 && p<25) {
-                $scope.Sat_URL = "img/Pad_10.png";
-            } else if (p>=25 && p<50) {
-                $scope.Sat_URL = "img/Pad_25.png";
-            } else if (p>=50 && p<75) {
-                $scope.Sat_URL = "img/Pad_50.png";
-            } else if (p>=75 && p<90) {
-                $scope.Sat_URL = "img/Pad_75.png";
-            } else {
-                $scope.Sat_URL = "img/Pad_90.png";
-            }
-        }
-                
-        console.log("saturation percentage = " + a);
+        $scope.percent = p;
+        $scope.updateStatus();                            
     };
     
     var sat_notifyFailure = function() {
@@ -255,7 +226,6 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
             // failture
         });
     };
-
 
     var connectFailure = function(err) {
         console.log(err);
@@ -327,12 +297,45 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     $scope.$on('$ionicView.enter', function (viewInfo, state) {
         $scope.status = sharedProperties.getProperty();
         
-        if($scope.status.connectedClass == "blue") {
+        $scope.updateStatus();
+        /*if($scope.status.connectedClass == "blue") {
             $scope.Sat_URL = "img/Tampon_90.png";    
         } else {
             $scope.Sat_URL = "img/Pad_90.png";    
-        }
+        }*/
     });
+    
+    $scope.updateStatus = function () {
+        var p = $scope.percent;
+        if($scope.status.connectedClass == "blue") { // Tampon
+            $scope.Sat_URL = "img/Tampon_90.png";            
+            if(p>=0 && p<25) {
+                $scope.Sat_URL = "img/Tampon_10.png";
+            } else if (p>=25 && p<50) {
+                $scope.Sat_URL = "img/Tampon_25.png";
+            } else if (p>=50 && p<75) {
+                $scope.Sat_URL = "img/Tampon_50.png";
+            } else if (p>=75 && p<90) {
+                $scope.Sat_URL = "img/Tampon_75.png";
+            } else {
+                $scope.Sat_URL = "img/Tampon_90.png";
+            }
+            
+        } else { //Pantiliner
+            $scope.Sat_URL = "img/Pad_90.png";
+            if(p>=0 && p<25) {
+                $scope.Sat_URL = "img/Pad_10.png";
+            } else if (p>=25 && p<50) {
+                $scope.Sat_URL = "img/Pad_25.png";
+            } else if (p>=50 && p<75) {
+                $scope.Sat_URL = "img/Pad_50.png";
+            } else if (p>=75 && p<90) {
+                $scope.Sat_URL = "img/Pad_75.png";
+            } else {
+                $scope.Sat_URL = "img/Pad_90.png";
+            }
+        }  
+    }
     
     
     $scope.goConnect = function () {
