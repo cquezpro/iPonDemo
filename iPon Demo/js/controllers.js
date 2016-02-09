@@ -215,7 +215,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         var p = parseInt(a) * 100/1800;        
         console.log("Saturation percentage = " + p);
         $scope.percent = p;
-        $scope.updateStatus();                            
+        $scope.updateSaturationStatus();
     };
     
     var sat_notifyFailure = function() {
@@ -297,7 +297,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     $scope.$on('$ionicView.enter', function (viewInfo, state) {
         $scope.status = sharedProperties.getProperty();
         
-        $scope.updateStatus();
+        $scope.updateSaturationStatus();
         /*if($scope.status.connectedClass == "blue") {
             $scope.Sat_URL = "img/Tampon_90.png";    
         } else {
@@ -305,7 +305,8 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         }*/
     });
     
-    $scope.updateStatus = function () {
+    $scope.updateSaturationStatus = function () {
+        alert("updateSaturationStatus percent = " + $scope.percent);
         var p = $scope.percent;
         if($scope.status.connectedClass == "blue") { // Tampon
             $scope.Sat_URL = "img/Tampon_90.png";            
