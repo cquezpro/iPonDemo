@@ -116,6 +116,8 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     var connectSuccess = function(deviceInfo) {
         alert("connectSuccess ");
         
+        $scope.bDeviceConnected = true;
+        
         setTimeout(function () {
             $scope.$apply(function () {
                 $scope.status.bConnect = false;
@@ -274,6 +276,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     
     var disconnectSuccess = function () {
         alert("disconnectSuccess ");
+        $scope.bDeviceConnected = false;
     };
     
     var disconnectFailure = function () {
@@ -306,8 +309,6 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     });*/    
 
     $scope.$on('$ionicView.enter', function (viewInfo, state) {
-        $scope.status = sharedProperties.getProperty();
-        
         $scope.updateSaturationStatus();
         
         /*if($scope.status.connectedClass == "blue") {
@@ -321,9 +322,17 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         console.log("updateSaturationStatus percent = " + $scope.percent);
         var p = $scope.percent;
         
+        if(!$scope.bDeviceConnected) {
+            $scope.tryConnecting();
+            return ;    
+        }
+        
         if(!p) {
             return ;
         }
+        
+        $scope.status = sharedProperties.getProperty();
+               
         setTimeout(function () {
             $scope.$apply(function () {
                 if($scope.status.connectedClass == "blue") { // Tampon
