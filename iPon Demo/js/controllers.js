@@ -319,10 +319,16 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     $scope.updateSaturationStatus = function () {
         console.log("updateSaturationStatus percent = " + $scope.percent);
         var p = $scope.percent;
-        
+         
+        if(!p) {
+            return ;
+        }
         setTimeout(function () {
+           alert(1);
             $scope.$apply(function () {
+                alert(2);
                 if($scope.status.connectedClass == "blue") { // Tampon
+                    alert(p);
                     $scope.Sat_URL = "img/Tampon_90.png";            
                     if(p>=0 && p<25) {
                         $scope.Sat_URL = "img/Tampon_10.png";
@@ -337,6 +343,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
                     }
                     
                 } else { //Pantiliner
+                    alert(4);
                     $scope.Sat_URL = "img/Pad_90.png";
                     if(p>=0 && p<25) {
                         $scope.Sat_URL = "img/Pad_10.png";
