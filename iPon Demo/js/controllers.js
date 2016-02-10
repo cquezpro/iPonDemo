@@ -1,8 +1,8 @@
 var gProduct = 1;
 var bSat = false;
 var bLowBatt = false;
-var gSatValue = 0;
-var gLowBattValue = 0;
+var gSatValue = 90;
+var gLowBattValue = 30;
 
 angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 .constant('baseURL','http://crm.welcomepickups.com/drivers-app/api/v1/')
