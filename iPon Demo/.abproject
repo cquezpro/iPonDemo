@@ -43,6 +43,7 @@
   ],
   "CorePlugins": [
     "com.megster.cordova.ble@1.0.2",
+    "de.appplant.cordova.plugin.local-notification@0.8.2",
     "org.apache.cordova.battery-status",
     "org.apache.cordova.camera",
     "org.apache.cordova.console",

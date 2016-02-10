@@ -267,6 +267,10 @@ body {
 }
 
 /* Alert Page  */
+#alerts .item {
+    border: none;
+}
+
 #alerts .alert-item{
     float:left;
     width: 60%;
@@ -274,9 +278,13 @@ body {
     margin-bottom: 20px;
 }
 
-#alerts .alert-item select{ 
-    height: 35px;
-    width: 100%;
+#alerts select{ 
+    height: 35px !important;
+    width: 150px;
+}
+
+#alerts .item-toggle .toggle {
+    top: 18px;    
 }
 
 #alerts .check-item{

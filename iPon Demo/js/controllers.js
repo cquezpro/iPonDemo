@@ -1,4 +1,8 @@
 var gProduct = 1;
+var bSat = false;
+var bLowBatt = false;
+var gSatValue = 0;
+var gLowBattValue = 0;
 
 angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 .constant('baseURL','http://crm.welcomepickups.com/drivers-app/api/v1/')
@@ -179,8 +183,12 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         
         console.log(data[0].toString());
         var a = data[0].toString();        
-        var p = parseInt(a);        
+        var p = parseInt(a);
         
+        if(bLowBatt && p >= gLowBattValue) {
+            alert(gLowBattValue + "% Battery on Charm");
+        }
+
         console.log("Battery percentage = " + p);
         
         if(p>=0 && p<25) {
@@ -216,6 +224,11 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         
         var p = parseInt(a) * 100/1800;        
         console.log("Saturation percentage = " + p);
+        
+        if(bSat && p >= gSatValue) {
+            alert(gSatValue + "% iPon Saturaton Level Reached");
+        }
+        
         $scope.percent = p;
         $scope.updateSaturationStatus();
     };
@@ -281,41 +294,10 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     
     var disconnectFailure = function () {
         alert("disconnectFailure ");
-    };
-      
-   /*$rootScope.$watch('connectedClass', function(newValue, oldValue) {
-          //update the DOM with newValue
-        console.log(newValue);
-       $scope.status.connectedClass = newValue;
-        //$scope.$digest();
-    });
-    
-    $rootScope.$watch('bConnected', function(newValue, oldValue) {
-          //update the DOM with newValue
-        console.log("bConnected = " + newValue);
-        $scope.status.bConnected = newValue;
-    });
-    
-    $rootScope.$watch('bConnect', function(newValue, oldValue) {
-          //update the DOM with newValue
-        console.log("bConnect = " + newValue);
-        $scope.status.bConnect = newValue;
-    });
-    
-    $rootScope.$watch('bConnecting', function(newValue, oldValue) {
-          //update the DOM with newValue
-        console.log("bConnecting = " + newValue);
-        $scope.status.bConnecting = newValue;
-    });*/    
-
+    };      
+   
     $scope.$on('$ionicView.enter', function (viewInfo, state) {
         $scope.updateSaturationStatus();
-        
-        /*if($scope.status.connectedClass == "blue") {
-            $scope.Sat_URL = "img/Tampon_90.png";    
-        } else {
-            $scope.Sat_URL = "img/Pad_90.png";    
-        }*/
     });
     
     $scope.updateSaturationStatus = function () {
@@ -366,7 +348,6 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
             });
         }, 500);        
     }
-    
     
     $scope.goConnect = function () {
 		$state.go('connect');
@@ -474,6 +455,12 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 
 .controller('AlertCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, $ionicTabsDelegate, sharedProperties) {
     
+    $scope.SatMode = { checked: false };
+    $scope.LowBattMode = { checked: false };
+    
+    $scope.SatValue = "90";
+    $scope.LowBattValue = "10";
+    
     $scope.$on('$ionicView.enter', function (viewInfo, state) {
         $ionicTabsDelegate.select(1);
     });
@@ -500,6 +487,26 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     
     $scope.goHelp = function () {
     	$state.go('help');
+    };
+    
+    $scope.changeSatMode = function () {
+      //alert($scope.SatMode.checked);  
+        bSat = $scope.SatMode.checked;
+    };
+    
+    $scope.changeLowBattMode = function () {
+      //alert($scope.SatMode.checked);  
+        bLowBatt = $scope.LowBattMode.checked;
+    };
+    
+    $scope.changeSatValue = function () {
+        gSatValue = parseInt(this.SatValue);
+        console.log(gSatValue );
+    };
+    
+    $scope.changeLowBattValue = function () {
+        gLowBattValue = parseInt(this.LowBattValue);
+        console.log(gLowBattValue);
     };
 })
 

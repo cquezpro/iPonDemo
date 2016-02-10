@@ -8,74 +8,58 @@
     <ion-content class="padding">        
         <ul style="padding: 30px;">
             <li>
-                <div class="alert-item">
-                    <select>
-                        <option value="Saturation 90%">Saturation 90%</option>
-                        <option value="Saturation 75%">Saturation 75%</option>
-                        <option value="Saturation 50%">Saturation 50%</option>
-                        <option value="Saturation 25%">Saturation 25%</option>
-                        <option value="Saturation 10%">Saturation 10%</option>
-                    </select>
-                </div>
                 <div class="check-item">
                     <label class="toggle">
-                       <input type="checkbox">
-                       <div class="track">
-                         <div class="handle"></div>
-                       </div>
+                       <ion-toggle ng-model="SatMode.checked" ng-change="changeSatMode()">
+                            <select ng-model="SatValue" ng-change="changeSatValue()">
+                                <option value="90">Saturation 90%</option>
+                                <option value="75">Saturation 75%</option>
+                                <option value="50">Saturation 50%</option>
+                                <option value="25">Saturation 25%</option>
+                                <option value="10">Saturation 10%</option>
+                            </select>
+                       </ion-toggle>
                     </label>
                </div>
             </li>
             <li>
-                <div class="alert-item">
-                    <select>
-                        <option value="Time 4h 00m">Time 4h 00m</option>
-                        <option value="Time 3h 00m">Time 3h 00m</option>
-                        <option value="Time 2h 00m">Time 2h 00m</option>
-                        <option value="Time 1h 00m">Time 1h 00m</option>                        
-                    </select>
-                </div>
                 <div class="check-item">
                     <label class="toggle">
-                       <input type="checkbox">
-                       <div class="track">
-                         <div class="handle"></div>
-                       </div>
+                      <ion-toggle ng-model="TimeMode">
+                            <select>
+                                <option value="Time 4h 00m">Time 4h 00m</option>
+                                <option value="Time 3h 00m">Time 3h 00m</option>
+                                <option value="Time 2h 00m">Time 2h 00m</option>
+                                <option value="Time 1h 00m">Time 1h 00m</option>                        
+                            </select>
+                       </ion-toggle>
                     </label>
                 </div>
             </li>
             <li>
-                <div class="alert-item">
-                    <select>
-                        <option value="Low Batt 10%">Low Batt 10%</option>
-                        <option value="Low Batt 20%">Low Batt 20%</option>
-                        <option value="Low Batt 30%">Low Batt 30%</option>                        
-                    </select>
-                </div>
-                <div class="check-item">
+                 <div class="check-item">
                     <label class="toggle">
-                       <input type="checkbox">
-                       <div class="track">
-                         <div class="handle"></div>
-                       </div>
+                       <ion-toggle ng-model="LowBattMode.checked" ng-change="changeLowBattMode()">
+                             <select ng-model="LowBattValue" ng-change="changeLowBattValue()">
+                                <option value="10">Low Batt 10%</option>
+                                <option value="20">Low Batt 20%</option>
+                                <option value="30">Low Batt 30%</option>                        
+                            </select>
+                       </ion-toggle>
                     </label>
                  </div>
             </li>
             <li>
-                <div class="alert-item">
-                    <select>
-                        <option value="Pre-Period 2D">Pre-Period 2D</option>
-                        <option value="Pre-Period 3D">Pre-Period 3D</option>
-                        <option value="Pre-Period 4D">Pre-Period 4D</option>
-                        <option value="Pre-Period 5D">Pre-Period 5D</option>
-                    </select>
-                </div>
-                <div class="check-item">
+                 <div class="check-item">
                     <label class="toggle">
-                       <input type="checkbox">
-                       <div class="track">
-                         <div class="handle"></div>
-                       </div>
+                       <ion-toggle ng-model="PeriodMode">
+                              <select>
+                                <option value="Pre-Period 2D">Pre-Period 2D</option>
+                                <option value="Pre-Period 3D">Pre-Period 3D</option>
+                                <option value="Pre-Period 4D">Pre-Period 4D</option>
+                                <option value="Pre-Period 5D">Pre-Period 5D</option>
+                            </select>
+                       </ion-toggle>
                     </label>
                 </div>
             </li>
