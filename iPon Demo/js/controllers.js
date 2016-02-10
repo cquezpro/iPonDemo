@@ -186,7 +186,9 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         var p = parseInt(a);
         
         if(bLowBatt && p >= gLowBattValue) {
-            alert(gLowBattValue + "% Battery on Charm");
+            var msg = gLowBattValue.toString() + "% Battery on Charm";
+            cordova.plugins.notification.local.schedule({ message: msg });
+            //alert(gLowBattValue + "% Battery on Charm");
         }
 
         console.log("Battery percentage = " + p);
@@ -226,7 +228,9 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         console.log("Saturation percentage = " + p);
         
         if(bSat && p >= gSatValue) {
-            alert(gSatValue + "% iPon Saturaton Level Reached");
+            //alert(gSatValue + "% iPon Saturaton Level Reached");
+            var msg = gSatValue.toString() + "% iPon Saturaton Level Reached"
+            cordova.plugins.notification.local.schedule({ message: msg });
         }
         
         $scope.percent = p;
