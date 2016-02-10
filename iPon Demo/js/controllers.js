@@ -187,7 +187,12 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         
         if(bLowBatt && p >= gLowBattValue) {
             var msg = gLowBattValue.toString() + "% Battery on Charm";
-            cordova.plugins.notification.local.schedule({ message: msg });
+            
+            setTimeout(function () {
+                if (window.cordova && window.cordova.plugins.notification) {
+                    cordova.plugins.notification.local.schedule({ message: msg });
+                }
+            }, 500);
             //alert(gLowBattValue + "% Battery on Charm");
         }
 
@@ -230,7 +235,11 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         if(bSat && p >= gSatValue) {
             //alert(gSatValue + "% iPon Saturaton Level Reached");
             var msg = gSatValue.toString() + "% iPon Saturaton Level Reached"
-            cordova.plugins.notification.local.schedule({ message: msg });
+            setTimeout(function () {
+                if (window.cordova && window.cordova.plugins.notification) {
+                    cordova.plugins.notification.local.schedule({ message: msg });
+                }
+            }, 500);
         }
         
         $scope.percent = p;
