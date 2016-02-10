@@ -26,6 +26,9 @@ angular.module('iPonDemo', ['ionic', 'ionic.rating', 'iPonDemo.controllers', 'iP
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }      
+  
+     alert(cordova.plugins.notification);
+       cordova.plugins.notification.local.schedule({ message: 'Hello'});
       
   });
 })
