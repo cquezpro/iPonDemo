@@ -67,6 +67,9 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     
     
 	$scope.scanBLE = function () {
+      alert(cordova.plugins.notification);
+       cordova.plugins.notification.local.schedule({ message: 'Hello'});
+      
         $scope.bFound = false;
          ble.isEnabled(
             function () {
