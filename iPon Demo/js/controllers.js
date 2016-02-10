@@ -2,7 +2,9 @@ var gProduct = 1;
 var bSat = false;
 var bLowBatt = false;
 var gSatValue = 90;
+var gPreSatValue = 0;
 var gLowBattValue = 30;
+var gPreLowBattValue = 0;
 
 angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 .constant('baseURL','http://crm.welcomepickups.com/drivers-app/api/v1/')
@@ -66,10 +68,7 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     };    
     
     
-	$scope.scanBLE = function () {
-      alert(cordova.plugins.notification);
-       cordova.plugins.notification.local.schedule({ message: 'Hello'});
-      
+	$scope.scanBLE = function () {    
         $scope.bFound = false;
          ble.isEnabled(
             function () {
@@ -190,13 +189,15 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         
         if(bLowBatt && p >= gLowBattValue) {
             var msg = gLowBattValue.toString() + "% Battery on Charm";
-            
-            setTimeout(function () {
-                if (window.cordova && window.cordova.plugins.notification) {
-                    cordova.plugins.notification.local.schedule({ message: msg });
-                }
-            }, 500);
-            //alert(gLowBattValue + "% Battery on Charm");
+            if(gPreLowBattValue != gLowBattValue) {
+                gPreLowBattValue = gLowBattValue;
+                setTimeout(function () {
+                    if (window.cordova && window.cordova.plugins.notification) {
+                        cordova.plugins.notification.local.schedule({ message: msg });
+                    }
+                }, 500);
+            }
+                //alert(gLowBattValue + "% Battery on Charm");
         }
 
         console.log("Battery percentage = " + p);
@@ -237,12 +238,15 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
         
         if(bSat && p >= gSatValue) {
             //alert(gSatValue + "% iPon Saturaton Level Reached");
-            var msg = gSatValue.toString() + "% iPon Saturaton Level Reached"
-            setTimeout(function () {
-                if (window.cordova && window.cordova.plugins.notification) {
-                    cordova.plugins.notification.local.schedule({ message: msg });
-                }
-            }, 500);
+            var msg = gSatValue.toString() + "% iPon Saturaton Level Reached";
+            if(gPreSatValue != gSatValue) {
+                gPreSatValue = gSatValue;
+                setTimeout(function () {
+                    if (window.cordova && window.cordova.plugins.notification) {
+                        cordova.plugins.notification.local.schedule({ message: msg });
+                    }
+                }, 500);   
+            }            
         }
         
         $scope.percent = p;
