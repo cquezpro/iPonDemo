@@ -475,11 +475,57 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
 
 .controller('AlertCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, $ionicTabsDelegate, sharedProperties) {
     
-    $scope.SatMode = { checked: false };
-    $scope.LowBattMode = { checked: false };
-    
-    $scope.SatValue = "90";
-    $scope.LowBattValue = "10";
+    $scope.init = function() {
+        console.log("init");
+        $scope.SatMode = { checked: false };
+        $scope.LowBattMode = { checked: false };
+        $scope.SatValue = "90";
+        $scope.LowBattValue = "10";    
+        
+        
+        setTimeout(function () {
+            $scope.$apply(function () {
+                
+                if(window.localStorage.getItem("bSat") == "true" || window.localStorage.getItem("bSat") == true) {
+                    $scope.SatMode.checked = true;
+                } else {
+                    $scope.SatMode.checked = false;
+                }
+                
+                if(window.localStorage.getItem("bLowBatt") == "true" || window.localStorage.getItem("bLowBatt") == true) {
+                    $scope.LowBattMode.checked = true;                     
+                } else {
+                    $scope.LowBattMode.checked = false;
+                }
+                
+                $scope.SatValue = window.localStorage.getItem("gSatValue");
+                $scope.LowBattValue = window.localStorage.getItem("gLowBattValue");
+                
+                if($scope.SatMode.checked == null) {
+                    $scope.SatMode.checked = false;
+                }
+                
+                if($scope.LowBattMode.checked == null) {
+                    $scope.LowBattMode.checked = false;
+                }
+                
+                if($scope.SatValue == null) {
+                    $scope.SatValue = "90";
+                }
+                
+                if($scope.LowBattValue == null) {
+                    $scope.LowBattValue = "10";
+                }
+                
+                console.log("SatMode = " + $scope.SatMode.checked);
+                console.log("LowBattMode = " + $scope.LowBattMode.checked);
+                console.log("gSatValue = " + $scope.SatValue);
+                console.log("gLowBattValue = " + $scope.LowBattValue);      
+            });
+        }, 500);
+        
+          
+    };    
     
     $scope.$on('$ionicView.enter', function (viewInfo, state) {
         $ionicTabsDelegate.select(1);
@@ -512,22 +558,28 @@ angular.module('iPonDemo.controllers', ['ionic', 'ionic.rating', 'ngCordova'])
     $scope.changeSatMode = function () {
       //alert($scope.SatMode.checked);  
         bSat = $scope.SatMode.checked;
+        window.localStorage.setItem("bSat", bSat);
     };
     
     $scope.changeLowBattMode = function () {
       //alert($scope.SatMode.checked);  
         bLowBatt = $scope.LowBattMode.checked;
+        window.localStorage.setItem("bLowBatt", bLowBatt);
     };
     
     $scope.changeSatValue = function () {
         gSatValue = parseInt(this.SatValue);
         console.log(gSatValue );
+        window.localStorage.setItem("gSatValue", gSatValue);
     };
     
     $scope.changeLowBattValue = function () {
         gLowBattValue = parseInt(this.LowBattValue);
         console.log(gLowBattValue);
+        window.localStorage.setItem("gLowBattValue", gLowBattValue);
     };
+    
+    $scope.init();
 })
 
 .controller('CalendarCtrl', function($scope, $rootScope, FriendService, $timeout, $ionicLoading,  $interval, $state, $ionicScrollDelegate, $ionicTabsDelegate, sharedProperties) {
